@@ -119,7 +119,7 @@ export default function Hero() {
     const rev = (show, d=0) => ({ opacity:show?1:0, transform:show?"none":"translateY(18px)", transition:`opacity .65s cubic-bezier(.22,1,.36,1) ${d}s,transform .65s cubic-bezier(.22,1,.36,1) ${d}s` });
 
     return (
-        <section style={{ minHeight:"140svh", display:"flex", alignItems:"center", padding:"clamp(70px,10vw,100px) clamp(16px,5vw,48px) clamp(30px,6vw,40px)", position:"relative", overflow:"hidden" }}>
+        <section style={{ minHeight:"110svh", display:"flex", alignItems:"center", padding:"clamp(70px,10vw,100px) clamp(16px,5vw,48px) clamp(30px,6vw,40px)", position:"relative", overflow:"hidden" }}>
             <BgCanvas/>
             <div style={{ position:"absolute", inset:0, pointerEvents:"none", backgroundImage:"linear-gradient(rgba(200,212,0,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(200,212,0,.022) 1px,transparent 1px)", backgroundSize:"40px 40px" }}/>
             <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 55% 65% at 75% 50%,rgba(200,212,0,.05) 0%,transparent 65%)", pointerEvents:"none" }}/>
@@ -241,6 +241,7 @@ export default function Hero() {
 
   /* Reduce section padding so orb is closer to top */
   section{
+    min-height: 140svh !important;
     padding:clamp(40px,8vw,60px) clamp(16px,5vw,32px) clamp(30px,5vw,40px)!important;
   }
 }
