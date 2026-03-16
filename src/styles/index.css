@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --accent: #C8D400;
+    --accent-hover: #d4e000;
+    --accent-faint: rgba(200, 212, 0, 0.08);
+    --accent-faint2: rgba(200, 212, 0, 0.14);
+    --dark: #0e0f0a;
+    --dark2: #141510;
+    --card: #1e2018;
+    --card2: #232518;
+    --border: rgba(200, 212, 0, 0.12);
+    --border2: rgba(200, 212, 0, 0.20);
+    --text: #f2f2ec;
+    --muted: #9a9b8e;
+    --muted2: #6b6c60;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accent color utilities not coverable by Tailwind config alone */
+.text-accent        { color: var(--accent); }
+.bg-accent          { background-color: var(--accent); }
+.bg-accent:hover    { background-color: var(--accent-hover); }
+.border-accent      { border-color: var(--accent); }
+.bg-card            { background-color: var(--card); }
+.bg-card2           { background-color: var(--card2); }
+.bg-dark            { background-color: var(--dark); }
+.bg-dark2           { background-color: var(--dark2); }
+.text-muted         { color: var(--muted); }
+.text-muted2        { color: var(--muted2); }
+.border-base        { border-color: var(--border); }
+.border-base2       { border-color: var(--border2); }
+.font-mono-dm       { font-family: 'DM Mono', monospace; }
+
+/* Fade-up scroll animation */
+.fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Grid background pattern for Hero */
+.grid-pattern {
+    background-image:
+            linear-gradient(to right, rgba(200, 212, 0, 0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(200, 212, 0, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+/* Top accent line on cards */
+.card-accent-top::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* YouTube icon play triangle */
+.yt-play::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 7px;
+    border-color: transparent transparent transparent #0e0f0a;
+    margin-left: 1px;
+}
+
+/* Checkmark inside pricing feature check */
+.check-mark::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2.5px;
+    width: 5px;
+    height: 3px;
+    border-left: 1.5px solid #0e0f0a;
+    border-bottom: 1.5px solid #0e0f0a;
+    transform: rotate(-45deg);
+}
