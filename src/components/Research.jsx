@@ -5,46 +5,14 @@ const IconExt     = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="
 const IconRefresh = () => <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11 6.5A4.5 4.5 0 102 6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><path d="M11 3v3.5H7.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 const IconSignal  = () => <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="7" width="2" height="4" rx=".5" fill="currentColor" opacity=".4"/><rect x="5" y="4" width="2" height="7" rx=".5" fill="currentColor" opacity=".7"/><rect x="9" y="1" width="2" height="10" rx=".5" fill="currentColor"/></svg>;
 
-// ── Categories based on actual themynotes.com content ──────────────────────
-const CATEGORIES = [
-    // Crypto
-    { kw:["bitcoin","btc","крипто","crypto","cryptomania","криптомани"],
-        glyph:"₿", color:"rgba(200,212,0,.92)", label:"Крипто" },
-    // DeFi / ETH
-    { kw:["ethereum","eth","defi","дефи","web3","блокчейн","blockchain"],
-        glyph:"Ξ", color:"rgba(100,200,255,.88)", label:"DeFi" },
-    // AI
-    { kw:["искусственный","artificial intelligence","сверхразум","supermind","ai |","| ai","ии |","мания ии"],
-        glyph:"⬡", color:"rgba(200,140,255,.88)", label:"ИИ" },
-    // Fundamental analysis & macro
-    { kw:["фундаментальный","fundamental","хрустальный шар","crystal ball","волшебный мир","world of corporations","макро","macro","основы"],
-        glyph:"◈", color:"rgba(160,255,180,.85)", label:"Анализ" },
-    // Tech / semiconductors / electronics / aerospace
-    { kw:["photronics","фотошаблон","photomask","силовая электроника","power electronics","espey","optex","optical","semiconductor","полупроводник","аэрокосм","aerospace","innovative solutions"],
-        glyph:"⬢", color:"rgba(100,210,255,.85)", label:"Технологии" },
-    // Defense / weapons / military
-    { kw:["smith","wesson","огнестрел","firearms","оружи","defense","оборон","military","defense"],
-        glyph:"◆", color:"rgba(255,110,80,.85)", label:"Оборона" },
-    // Consumer / retail / services / FMCG
-    { kw:["gamestop","car wash","автомойка","mister","lifeway","kefir","кефир","consumer","retail","ритейл","nature's sunshine","сетевой маркетинг","multi-level","gencor","строительн","construction","оборудован","equipment","xpel","защитн","protective"],
-        glyph:"◇", color:"rgba(255,210,80,.85)", label:"Потребит." },
-    // Fintech / payments / financial services
-    { kw:["payoneer","платёж","payment","ezcorp","ломбард","pawnshop","fintech","финтех","банк","bank"],
-        glyph:"₮", color:"rgba(80,220,160,.85)", label:"Финтех" },
-    // Portfolio & investing strategy
-    { kw:["портфел","portfolio","инвестиц","invest","стратег","strategy"],
-        glyph:"◉", color:"rgba(255,180,80,.85)", label:"Портфель" },
-];
-const FALLBACK = { glyph:"◈", color:"rgba(160,255,180,.8)", label:"Research" };
+const TAGS = { bitcoin:"₿",btc:"₿",крипто:"₿",crypto:"₿", defi:"Ξ",дефи:"Ξ",eth:"Ξ",ethereum:"Ξ", анализ:"◈",analysis:"◈",фунда:"◈", ai:"◆",искусственный:"◆",интеллект:"◆",портфел:"◆",invest:"◆",инвест:"◆" };
+const COLORS = { "₿":"rgba(200,212,0,.9)", "Ξ":"rgba(100,200,255,.85)", "◈":"rgba(160,255,180,.8)", "◆":"rgba(255,180,80,.8)" };
+const LABELS = { "₿":"Крипто", "Ξ":"DeFi", "◈":"Анализ", "◆":"Инвестиции" };
 
-function classify(title = "") {
-    const t = title.toLowerCase();
-    for (const cat of CATEGORIES) {
-        if (cat.kw.some(kw => t.includes(kw))) {
-            return { glyph: cat.glyph, color: cat.color, tag: cat.label };
-        }
-    }
-    return { glyph: FALLBACK.glyph, color: FALLBACK.color, tag: FALLBACK.label };
+function classify(title=""){
+    const t=title.toLowerCase();
+    for(const [kw,g] of Object.entries(TAGS)) if(t.includes(kw)) return{glyph:g,color:COLORS[g],tag:LABELS[g]};
+    return{glyph:"◈",color:COLORS["◈"],tag:"Research"};
 }
 const strip  = h => h?.replace(/<[^>]*>/g,"").replace(/&amp;/g,"&").replace(/&#8230;/g,"…").replace(/&#\d+;/g,"").trim()??"";
 const fmtDate= r => { if(!r)return""; const d=new Date(r); return isNaN(d)?r:d.toLocaleDateString("ru-RU",{day:"numeric",month:"short",year:"numeric"}); };
@@ -108,27 +76,71 @@ function Card({ post, index }){
     );
 }
 
-const SITE="https://themynotes.com";
-async function fetchWithStrategy(strategy){
-    const sig=AbortSignal.timeout(10000);
-    if(strategy==="rss_allorigins"){
-        const r=await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(SITE+"/feed/")}`,{signal:sig});
-        if(!r.ok)throw new Error(`allorigins ${r.status}`);
-        const j=await r.json(); if(!j?.contents)throw new Error("empty");
-        return parseRSS(j.contents);
+const SITE = "https://themynotes.com";
+const FEED = `${SITE}/feed/`;
+
+// ── Proxy strategies, tried in order ──────────────────────────────────────
+// Strategy 1: allorigins /raw  — returns raw bytes (no JSON wrapper), avoids
+//             the "contents is HTML" issue that /get suffers from
+// Strategy 2: corsproxy.io new URL format (url= param, no bare concat)
+// Strategy 3: proxy.cors.sh  — cors-anywhere compatible, no rate limit
+// Strategy 4: allorigins /get — fallback with JSON wrapper
+// Strategy 5: HTML scrape     — last resort, extracts titles from homepage
+
+async function tryFetch(url, asText = true) {
+    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return asText ? res.text() : res.json();
+}
+
+async function fetchWithStrategy(strategy) {
+    if (strategy === "raw_allorigins") {
+        const xml = await tryFetch(
+            `https://api.allorigins.win/raw?url=${encodeURIComponent(FEED)}`
+        );
+        if (!xml?.includes("<item") && !xml?.includes("<entry"))
+            throw new Error("no feed items in raw response");
+        return parseRSS(xml);
     }
-    if(strategy==="rss_corsproxy"){
-        const r=await fetch(`https://corsproxy.io/?${encodeURIComponent(SITE+"/feed/")}`,{signal:sig});
-        if(!r.ok)throw new Error(`corsproxy ${r.status}`);
-        const x=await r.text(); if(!x?.includes("<item"))throw new Error("no items");
-        return parseRSS(x);
+
+    if (strategy === "corsproxy") {
+        const xml = await tryFetch(
+            `https://corsproxy.io/?url=${encodeURIComponent(FEED)}`
+        );
+        if (!xml?.includes("<item") && !xml?.includes("<entry"))
+            throw new Error("no feed items");
+        return parseRSS(xml);
     }
-    if(strategy==="html_allorigins"){
-        const r=await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(SITE+"/")}`,{signal:sig});
-        if(!r.ok)throw new Error(`html ${r.status}`);
-        const j=await r.json(); return parseHTML(j?.contents??"");
+
+    if (strategy === "corssh") {
+        const xml = await tryFetch(
+            `https://proxy.cors.sh/${FEED}`,
+        );
+        if (!xml?.includes("<item") && !xml?.includes("<entry"))
+            throw new Error("no feed items");
+        return parseRSS(xml);
     }
-    throw new Error("unknown");
+
+    if (strategy === "get_allorigins") {
+        const json = await tryFetch(
+            `https://api.allorigins.win/get?url=${encodeURIComponent(FEED)}`,
+            false
+        );
+        const xml = json?.contents ?? "";
+        if (!xml.includes("<item") && !xml.includes("<entry"))
+            throw new Error("allorigins /get: no items in contents");
+        return parseRSS(xml);
+    }
+
+    if (strategy === "html_scrape") {
+        const json = await tryFetch(
+            `https://api.allorigins.win/get?url=${encodeURIComponent(SITE + "/")}`,
+            false
+        );
+        return parseHTML(json?.contents ?? "");
+    }
+
+    throw new Error("unknown strategy");
 }
 function parseRSS(xml){
     const doc=new DOMParser().parseFromString(xml,"text/xml");
@@ -154,32 +166,46 @@ export default function Research(){
     const [mainHov,setMainHov]=useState(false);
     const [lastFetched,setLastFetched]=useState(null);
 
+    // ESLint fix: defer setState to next tick so it's not synchronous inside observer callback
     useEffect(()=>{
         const els=ref.current?.querySelectorAll("[data-fade]")??[];
         const timers=[];
-        const obs=new IntersectionObserver(es=>es.forEach(e=>{
-            if(e.isIntersecting){
-                const key=e.target.dataset.fade;
-                const t=setTimeout(()=>setVis(v=>({...v,[key]:true})),0);
-                timers.push(t);
-            }
-        }),{threshold:.1});
+        const obs=new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    const key=e.target.dataset.fade;
+                    const t=setTimeout(()=>setVis(v=>({...v,[key]:true})),0);
+                    timers.push(t);
+                }
+            });
+        },{threshold:.1});
         els.forEach(el=>obs.observe(el));
         return()=>{ obs.disconnect(); timers.forEach(clearTimeout); };
     },[]);
 
-    const fetchPosts=async()=>{
+    // fetchPosts defined outside useEffect so it can also be called by the Refresh button,
+    // and wrapped in useRef to keep a stable reference without adding it to effect deps
+    const fetchPostsRef = useRef(null);
+    fetchPostsRef.current = async()=>{
         setStatus("loading");
-        for(const s of["rss_allorigins","rss_corsproxy","html_allorigins"]){
+        const strategies = ["raw_allorigins","corsproxy","corssh","get_allorigins","html_scrape"];
+        for(const s of strategies){
             try{
                 const data=await fetchWithStrategy(s);
-                if(!data.length)continue;
-                setPosts(data); setStatus("ok"); setLastFetched(new Date()); return;
-            }catch(e){console.warn(`[Research] ${s}:`,e.message);}
+                if(!data.length) continue;
+                setPosts(data); setStatus("ok"); setLastFetched(new Date());
+                console.log(`[Research] success via: ${s}`);
+                return;
+            }catch(e){
+                console.warn(`[Research] ${s} failed:`,e.message);
+            }
         }
         setStatus("error");
     };
-    useEffect(()=>{fetchPosts();},[]);
+    const fetchPosts = () => fetchPostsRef.current?.();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(()=>{ fetchPosts(); },[]);
 
     const f=(k,d=0)=>({opacity:vis[k]?1:0,transform:vis[k]?"none":"translateY(20px)",transition:`opacity .65s cubic-bezier(.22,1,.36,1) ${d}s,transform .65s cubic-bezier(.22,1,.36,1) ${d}s`});
 
