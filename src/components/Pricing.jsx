@@ -1,90 +1,350 @@
 import { useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faCheck, faBitcoinSign, faFire, faGem } from "@fortawesome/free-solid-svg-icons";
 
-const IconBTC   = () => <svg width="13" height="13" viewBox="0 0 15 15" fill="none"><path d="M10 6c.6-.6.6-1.7-.5-2.2s-4.5-.5-4.5-.5V7s3.5.5 5 0zM5 7v4s4 .5 5 0 1.7-1.7.5-2.8S5 7 5 7z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round"/><line x1="6.5" y1="1.5" x2="6.5" y2="3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><line x1="8.5" y1="1.5" x2="8.5" y2="3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><line x1="6.5" y1="11.5" x2="6.5" y2="13.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><line x1="8.5" y1="11.5" x2="8.5" y2="13.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>;
-const IconCheck = () => <svg width="8" height="8" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2L7.5 2" stroke="#0e0f0a" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>;
-const IconArrow = () => <svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7.5 3L11 6.5 7.5 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+// ── Plan icons ─────────────────────────────────────────────────────────────
+
+const IconCoin = () => (
+    <svg width="82" height="82" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" stroke="#C8D400" strokeWidth="1" strokeDasharray="4 3" opacity="0.22"/>
+        <circle cx="32" cy="32" r="24" fill="rgba(200,212,0,0.07)" stroke="#C8D400" strokeWidth="1.8" opacity="0.85"/>
+        <circle cx="32" cy="32" r="17" fill="none" stroke="#C8D400" strokeWidth="0.8" opacity="0.3"/>
+        {[0,45,90,135,180,225,270,315].map((deg, i) => {
+            const rad = Math.PI * deg / 180;
+            return <line key={i} x1={32+24*Math.cos(rad)} y1={32+24*Math.sin(rad)} x2={32+20*Math.cos(rad)} y2={32+20*Math.sin(rad)} stroke="#C8D400" strokeWidth="1.5" strokeLinecap="round" opacity="0.45"/>;
+        })}
+        <text x="32" y="32" textAnchor="middle" dominantBaseline="central" fontSize="18" fontWeight="700" fontFamily="monospace" fill="#C8D400" opacity="0.9">₿</text>
+        <ellipse cx="24" cy="22" rx="6" ry="3" fill="white" opacity="0.07" transform="rotate(-30 24 22)"/>
+    </svg>
+);
+
+const IconChartUp = () => (
+    <svg width="82" height="82" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" stroke="#C8D400" strokeWidth="1" strokeDasharray="4 3" opacity="0.28"/>
+        <circle cx="32" cy="32" r="24" fill="rgba(200,212,0,0.1)" stroke="#C8D400" strokeWidth="2" opacity="1"/>
+        <line x1="15" y1="41" x2="49" y2="41" stroke="#C8D400" strokeWidth="0.5" opacity="0.22"/>
+        <line x1="15" y1="35" x2="49" y2="35" stroke="#C8D400" strokeWidth="0.5" opacity="0.22"/>
+        <line x1="15" y1="29" x2="49" y2="29" stroke="#C8D400" strokeWidth="0.5" opacity="0.22"/>
+        <rect x="16" y="35" width="9" height="7"  rx="1.5" fill="#C8D400" opacity="0.45"/>
+        <rect x="27" y="29" width="9" height="13" rx="1.5" fill="#C8D400" opacity="0.65"/>
+        <rect x="38" y="23" width="9" height="19" rx="1.5" fill="#C8D400" opacity="0.95"/>
+        <polyline points="20,34 31,28 42,22 48,18" fill="none" stroke="#C8D400" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M43,16 L48,18 L45,23" fill="none" stroke="#C8D400" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+        <ellipse cx="24" cy="26" rx="6" ry="3" fill="white" opacity="0.08" transform="rotate(-20 24 26)"/>
+    </svg>
+);
+
+const IconCrown = () => (
+    <svg width="82" height="82" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" stroke="#FFB800" strokeWidth="1" strokeDasharray="4 3" opacity="0.38"/>
+        <circle cx="32" cy="32" r="24" fill="rgba(255,184,0,0.07)" stroke="#FFB800" strokeWidth="1.8" opacity="0.9"/>
+        <path d="M14 43 L14 27 L21 34 L32 18 L43 34 L50 27 L50 43 Z"
+              fill="rgba(255,184,0,0.13)" stroke="#FFB800" strokeWidth="1.7" strokeLinejoin="round" opacity="0.95"/>
+        <rect x="14" y="41" width="36" height="7" rx="2.5"
+              fill="rgba(255,184,0,0.2)" stroke="#FFB800" strokeWidth="1" opacity="0.9"/>
+        <polygon points="32,14 36.5,21 32,25 27.5,21"
+                 fill="rgba(255,210,60,0.55)" stroke="#FFD43B" strokeWidth="1.2" opacity="1"/>
+        <line x1="29" y1="17" x2="33" y2="15" stroke="white" strokeWidth="1.2" strokeLinecap="round" opacity="0.7"/>
+        <circle cx="22" cy="44.5" r="1.8" fill="#FFB800" opacity="0.65"/>
+        <circle cx="32" cy="44.5" r="1.8" fill="#FFD43B" opacity="1"/>
+        <circle cx="42" cy="44.5" r="1.8" fill="#FFB800" opacity="0.65"/>
+        <ellipse cx="24" cy="21" rx="5" ry="3" fill="white" opacity="0.13" transform="rotate(-25 24 21)"/>
+    </svg>
+);
+
+const PLAN_ICONS = [IconCoin, IconChartUp, IconCrown];
+
+// ── Data ───────────────────────────────────────────────────────────────────
 
 const CRYPTOS = ["BTC","ETH","USDT","USDC","BNB","SOL","TON","MATIC"];
 const PLANS = [
-    { tier:"Базовый", name:"Самостоятельно", price:"199", features:[{t:"Доступ ко всем 4 модулям",ok:true},{t:"Видеоматериалы + конспекты",ok:true},{t:"Исследовательские шаблоны",ok:true},{t:"Обратная связь от автора",ok:false},{t:"Разбор личного портфеля",ok:false}], featured:false },
-    { tier:"Профессиональный", name:"С поддержкой", price:"399", features:[{t:"Всё из базового тарифа",ok:true},{t:"Обратная связь от автора",ok:true},{t:"Закрытый Telegram-канал",ok:true},{t:"Ежемесячные live-сессии",ok:true},{t:"Разбор личного портфеля",ok:false}], featured:true },
-    { tier:"Премиум", name:"Персональный", price:"899", features:[{t:"Всё из профессионального",ok:true},{t:"Разбор личного портфеля",ok:true},{t:"3 персональные сессии",ok:true},{t:"Персональный roadmap",ok:true},{t:"Приоритетный доступ",ok:true}], featured:false },
+    { tier:"Базовый", name:"Базовый старт", price:"50", type:"basic", features:[
+            {t:"Доступ ко всем 4 модулям",   ok:true },
+            {t:"Видеоматериалы + конспекты", ok:true },
+            {t:"Исследовательские шаблоны",  ok:true },
+            {t:"Обратная связь от автора",   ok:false},
+            {t:"Разбор личного портфеля",    ok:false},
+        ]},
+    { tier:"Профессиональный", name:"Инвестор-практик", price:"500", type:"pro", features:[
+            {t:"Всё из базового тарифа",     ok:true },
+            {t:"Обратная связь от автора",   ok:true },
+            {t:"Закрытый Telegram-канал",    ok:true },
+            {t:"Ежемесячные live-сессии",    ok:true },
+            {t:"Разбор личного портфеля",    ok:false},
+        ]},
+    { tier:"Премиум", name:"Личное наставничество", price:"2500", type:"premium", features:[
+            {t:"Всё из профессионального",   ok:true },
+            {t:"Разбор личного портфеля",    ok:true },
+            {t:"3 персональные сессии",      ok:true },
+            {t:"Персональный roadmap",       ok:true },
+            {t:"Приоритетный доступ",        ok:true },
+        ]},
 ];
 
-function PriceCard({ plan, index }) {
-    const [hov, setHov]   = useState(false);
+// ── Per-type design tokens ─────────────────────────────────────────────────
+const CARD_THEME = {
+    basic: {
+        bg:           "#1a1c14",
+        bgHov:        "#1e2018",
+        border:       "rgba(200,212,0,0.08)",
+        borderHov:    "rgba(200,212,0,0.2)",
+        accent:       "#C8D400",
+        accentDim:    "rgba(200,212,0,0.5)",
+        checkBg:      "#C8D400",
+        checkFg:      "#0e0f0a",
+        checkBorder:  "#C8D400",
+        featureColor: "#6b6c60",
+        btnBg:        "transparent",
+        btnBgHov:     "rgba(200,212,0,0.07)",
+        btnColor:     "#6b6c60",
+        btnColorHov:  "#C8D400",
+        btnBorder:    "rgba(200,212,0,0.14)",
+        btnBorderHov: "rgba(200,212,0,0.3)",
+        btnWeight:    400,
+        shadow:       "none",
+        shadowHov:    "0 12px 32px rgba(0,0,0,0.4)",
+        scale:        1,
+        scaleHov:     1.005,
+        glowColor:    "rgba(200,212,0,0.04)",
+        tierColor:    "#6b6c60",
+        priceColor:   "#9a9b8e",
+    },
+    pro: {
+        bg:           "#222616",
+        bgHov:        "#272b18",
+        border:       "rgba(200,212,0,0.35)",
+        borderHov:    "rgba(200,212,0,0.6)",
+        accent:       "#C8D400",
+        accentDim:    "#C8D400",
+        checkBg:      "#C8D400",
+        checkFg:      "#0e0f0a",
+        checkBorder:  "#C8D400",
+        featureColor: "#b8b9ac",
+        btnBg:        "#C8D400",
+        btnBgHov:     "#d8e800",
+        btnColor:     "#0e0f0a",
+        btnColorHov:  "#0e0f0a",
+        btnBorder:    "#C8D400",
+        btnBorderHov: "#d8e800",
+        btnWeight:    700,
+        shadow:       "0 0 0 1px rgba(200,212,0,0.2), 0 12px 48px rgba(0,0,0,0.5), 0 0 60px rgba(200,212,0,0.06)",
+        shadowHov:    "0 0 0 1px rgba(200,212,0,0.4), 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(200,212,0,0.12)",
+        scale:        1.02,
+        scaleHov:     1.04,
+        glowColor:    "rgba(200,212,0,0.1)",
+        tierColor:    "#C8D400",
+        priceColor:   "#f2f2ec",
+    },
+    premium: {
+        bg:           "#1c1a0e",
+        bgHov:        "#211e10",
+        border:       "rgba(255,184,0,0.28)",
+        borderHov:    "rgba(255,184,0,0.55)",
+        accent:       "#FFB800",
+        accentDim:    "rgba(255,184,0,0.6)",
+        checkBg:      "rgba(255,184,0,0.2)",
+        checkFg:      "#FFB800",
+        checkBorder:  "rgba(255,184,0,0.5)",
+        featureColor: "#a8a090",
+        btnBg:        "transparent",
+        btnBgHov:     "rgba(255,184,0,0.09)",
+        btnColor:     "rgba(255,184,0,0.55)",
+        btnColorHov:  "#FFB800",
+        btnBorder:    "rgba(255,184,0,0.25)",
+        btnBorderHov: "rgba(255,184,0,0.55)",
+        btnWeight:    500,
+        shadow:       "0 0 0 1px rgba(255,184,0,0.12), 0 6px 32px rgba(0,0,0,0.45), 0 0 48px rgba(255,184,0,0.05)",
+        shadowHov:    "0 0 0 1px rgba(255,184,0,0.3), 0 14px 44px rgba(0,0,0,0.55), 0 0 70px rgba(255,184,0,0.1)",
+        scale:        1,
+        scaleHov:     1.005,
+        glowColor:    "rgba(255,184,0,0.08)",
+        tierColor:    "rgba(255,184,0,0.7)",
+        priceColor:   "#f0d080",
+    },
+};
+
+// ── Card ───────────────────────────────────────────────────────────────────
+
+function PriceCard({ plan, index, Icon }) {
+    const [hov,  setHov]  = useState(false);
     const [bHov, setBHov] = useState(false);
-    const ref  = useRef(null);
+    const ref = useRef(null);
     const [vis, setVis]   = useState(false);
+    const tk = CARD_THEME[plan.type];
+    const isPro     = plan.type === "pro";
+    const isPremium = plan.type === "premium";
 
     useEffect(() => {
         const el = ref.current; if (!el) return;
         const obs = new IntersectionObserver(([e]) => {
             if (e.isIntersecting) {
-                const t = setTimeout(() => setVis(true), index * 110);
+                const t = setTimeout(() => setVis(true), index * 120);
                 obs.disconnect();
                 return () => clearTimeout(t);
             }
-        }, { threshold: 0.1 });
+        }, { threshold: 0.08 });
         obs.observe(el);
         return () => obs.disconnect();
     }, [index]);
 
     return (
         <div ref={ref}
-             className={plan.featured ? "price-card price-card-featured" : "price-card"}
+             className={`price-card price-card-${plan.type}`}
              onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
              style={{
-                 background:plan.featured?"#232518":"#1e2018",
-                 border:`1px solid ${hov||plan.featured?"rgba(200,212,0,0.28)":"rgba(200,212,0,0.1)"}`,
-                 borderRadius:4, padding:"clamp(18px,2.5vw,28px)",
+                 background: hov ? tk.bgHov : tk.bg,
+                 border: `1px solid ${hov ? tk.borderHov : tk.border}`,
+                 borderRadius: 6,
+                 padding: isPro ? "clamp(24px,3vw,36px)" : "clamp(20px,2.5vw,28px)",
                  position:"relative", overflow:"hidden",
-                 opacity:vis?1:0,
-                 transform:vis?(hov?"translateY(-4px) scale(1.01)":plan.featured?"translateY(-2px)":"none"):"translateY(24px) scale(0.97)",
-                 boxShadow:hov?"0 18px 44px rgba(0,0,0,0.5),0 0 0 1px rgba(200,212,0,0.14)":plan.featured?"0 6px 24px rgba(0,0,0,0.28)":"none",
-                 transitionProperty:"opacity,transform,border-color,box-shadow",
-                 transitionDuration:".6s,.6s,.18s,.18s",
-                 transitionTimingFunction:"cubic-bezier(.22,1,.36,1)",
+                 opacity: vis ? 1 : 0,
+                 transform: vis
+                     ? `scale(${hov ? tk.scaleHov : tk.scale}) ${isPro && !hov ? "translateY(-8px)" : hov ? "translateY(-4px)" : "translateY(0)"}`
+                     : "translateY(28px) scale(0.96)",
+                 boxShadow: hov ? tk.shadowHov : tk.shadow,
+                 transitionProperty: "opacity,transform,border-color,box-shadow,background",
+                 transitionDuration: ".65s,.65s,.2s,.25s,.2s",
+                 transitionTimingFunction: "cubic-bezier(.22,1,.36,1)",
+                 zIndex: isPro ? 2 : 1,
              }}>
 
-            {plan.featured && <div style={{ position:"absolute", top:-1, left:"50%", transform:"translateX(-50%)", background:"#C8D400", color:"#0e0f0a", fontSize:9, fontWeight:700, letterSpacing:"0.12em", padding:"3px 14px", borderRadius:"0 0 4px 4px", fontFamily:"var(--mono)", whiteSpace:"nowrap" }}>◈ ПОПУЛЯРНЫЙ</div>}
+            {/* PRO: ambient glow backdrop */}
+            {isPro && (
+                <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200,212,0,0.1), transparent)", pointerEvents:"none" }}/>
+            )}
 
-            <div style={{ position:"absolute", bottom:-8, right:-2, fontSize:80, fontWeight:700, color:hov?"rgba(200,212,0,.06)":"rgba(200,212,0,.03)", fontFamily:"var(--mono)", lineHeight:1, pointerEvents:"none", userSelect:"none", transition:"all .4s ease" }}>₿</div>
-            <div style={{ position:"absolute", top:0, left:0, height:2, width:hov||plan.featured?"100%":"0%", background:"linear-gradient(90deg,#C8D400,transparent)", transition:"width .4s ease" }}/>
+            {/* PREMIUM: gold ambient glow */}
+            {isPremium && (
+                <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 80% 55% at 50% -5%, rgba(255,184,0,0.09), transparent)", pointerEvents:"none" }}/>
+            )}
 
-            <div style={{ fontSize:9, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:8 }}>{plan.tier}</div>
-            <div style={{ fontSize:"clamp(14px,2.2vw,18px)", fontWeight:600, color:"#f2f2ec", marginBottom:14, letterSpacing:"-0.01em" }}>{plan.name}</div>
+            {/* PRO: animated scan line */}
+            {isPro && (
+                <div style={{ position:"absolute", inset:0, background:"linear-gradient(180deg,rgba(200,212,0,0.04) 0%,transparent 40%)", animation:"scanLine 4s linear infinite", pointerEvents:"none" }}/>
+            )}
 
-            <div style={{ display:"flex", alignItems:"baseline", gap:2, marginBottom:3 }}>
-                <span style={{ fontSize:13, fontWeight:500, color:"#6b6c60", fontFamily:"var(--mono)" }}>$</span>
-                <span style={{ fontSize:"clamp(28px,4.5vw,38px)", fontWeight:600, color:"#f2f2ec", letterSpacing:"-0.03em", fontFamily:"var(--mono)", lineHeight:1 }}>{plan.price}</span>
+            {/* PREMIUM: subtle corner ornaments */}
+            {isPremium && (<>
+                <div style={{ position:"absolute", top:10, left:10, width:16, height:16, borderTop:"1px solid rgba(255,184,0,0.3)", borderLeft:"1px solid rgba(255,184,0,0.3)", pointerEvents:"none" }}/>
+                <div style={{ position:"absolute", top:10, right:10, width:16, height:16, borderTop:"1px solid rgba(255,184,0,0.3)", borderRight:"1px solid rgba(255,184,0,0.3)", pointerEvents:"none" }}/>
+                <div style={{ position:"absolute", bottom:10, left:10, width:16, height:16, borderBottom:"1px solid rgba(255,184,0,0.3)", borderLeft:"1px solid rgba(255,184,0,0.3)", pointerEvents:"none" }}/>
+                <div style={{ position:"absolute", bottom:10, right:10, width:16, height:16, borderBottom:"1px solid rgba(255,184,0,0.3)", borderRight:"1px solid rgba(255,184,0,0.3)", pointerEvents:"none" }}/>
+            </>)}
+
+            {/* Watermark */}
+            <div style={{ position:"absolute", bottom:-12, right:-6, fontSize:100, fontWeight:700, color:hov?tk.glowColor.replace(/[\d.]+\)/, "0.09)"):"transparent", fontFamily:"var(--mono)", lineHeight:1, pointerEvents:"none", userSelect:"none", transition:"color .4s ease",
+                backgroundImage: isPro ? "none" : "none",
+            }}>₿</div>
+
+            {/* Top accent line */}
+            <div style={{ position:"absolute", top:0, left:0, height: isPro ? 3 : 2, width:"100%", background: isPro
+                    ? `linear-gradient(90deg,transparent,#C8D400,transparent)`
+                    : isPremium
+                        ? `linear-gradient(90deg,transparent,#FFB800,transparent)`
+                        : `linear-gradient(90deg,rgba(200,212,0,0.5),transparent)`,
+                opacity: isPro ? 1 : isPremium ? (hov ? 1 : 0.65) : (hov ? 0.6 : 0.2),
+                transition:"opacity .3s",
+            }}/>
+
+            {/* PRO top badge — urgency */}
+            {isPro && (
+                <div style={{ position:"absolute", top:-1, left:"50%", transform:"translateX(-50%)", background:"linear-gradient(90deg,#9a9f00,#C8D400,#9a9f00)", color:"#0e0f0a", fontSize:10, fontWeight:700, letterSpacing:"0.1em", padding:"5px 18px", borderRadius:"0 0 6px 6px", fontFamily:"var(--mono)", whiteSpace:"nowrap", display:"flex", alignItems:"center", gap:6 }}>
+                    <FontAwesomeIcon icon={faFire} style={{ fontSize:9 }}/> САМЫЙ ПОПУЛЯРНЫЙ
+                </div>
+            )}
+
+            {/* PREMIUM badge */}
+            {isPremium && (
+                <div style={{ position:"absolute", top:14, right:14, display:"flex", alignItems:"center", gap:5, padding:"3px 9px", background:"rgba(255,184,0,0.08)", border:"1px solid rgba(255,184,0,0.28)", borderRadius:3, fontSize:9, fontWeight:600, color:"rgba(255,184,0,0.75)", fontFamily:"var(--mono)", letterSpacing:"0.12em" }}>
+                    <FontAwesomeIcon icon={faGem} style={{ fontSize:8 }}/> ПРЕМИУМ
+                </div>
+            )}
+
+            {/* Plan icon */}
+            <div style={{ display:"flex", justifyContent:"center", marginBottom:14, marginTop: isPro ? 16 : 8, position:"relative", zIndex:1 }}>
+                <div style={{ position:"relative", width:88, height:88, display:"flex", alignItems:"center", justifyContent:"center", animation:"iconFloat 3s ease-in-out infinite", animationDelay:`${index*0.45}s` }}>
+                    <div style={{ position:"absolute", inset:-8, borderRadius:"50%", background:`radial-gradient(circle,${tk.glowColor} 0%,transparent 70%)`, animation:`glowPulse ${2.8+index*.4}s ease-in-out infinite`, animationDelay:`${index*.3}s` }}/>
+                    <Icon/>
+                </div>
             </div>
-            <div style={{ fontSize:11, color:"#6b6c60", fontFamily:"var(--mono)", marginBottom:16 }}>единоразово</div>
-            <div style={{ width:"100%", height:1, background:"rgba(200,212,0,0.1)", marginBottom:14 }}/>
 
-            <ul style={{ listStyle:"none", display:"flex", flexDirection:"column", gap:8, marginBottom:18 }}>
+            {/* Tier label */}
+            <div style={{ fontSize:10, fontWeight:600, color:tk.tierColor, letterSpacing:"0.18em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:6, textAlign:"center" }}>
+                {plan.tier}
+            </div>
+
+            {/* Plan name */}
+            <div style={{ fontSize: isPro ? "clamp(16px,2.3vw,20px)" : "clamp(13px,1.9vw,16px)", fontWeight: isPro ? 700 : 500, color:"#f2f2ec", marginBottom:12, letterSpacing:"-0.01em", textAlign:"center" }}>
+                {plan.name}
+            </div>
+
+            {/* Price */}
+            <div style={{ display:"flex", alignItems:"baseline", gap:2, marginBottom:4, justifyContent:"center" }}>
+                <span style={{ fontSize: isPro ? 16 : 13, fontWeight:500, color: isPro ? "#9a9b8e" : "#4a4b42", fontFamily:"var(--mono)" }}>$</span>
+                <span style={{ fontSize: isPro ? "clamp(36px,5.5vw,48px)" : "clamp(28px,4vw,36px)", fontWeight: isPro ? 700 : 600, color:tk.priceColor, letterSpacing:"-0.04em", fontFamily:"var(--mono)", lineHeight:1 }}>
+                    {plan.price}
+                </span>
+            </div>
+            <div style={{ fontSize:10, color: "#4a4b42", fontFamily:"var(--mono)", marginBottom: isPro ? 20 : 16, textAlign:"center" }}>
+                единоразово
+            </div>
+
+            <div style={{ width:"100%", height:1, background: isPro ? "rgba(200,212,0,0.18)" : isPremium ? "rgba(255,184,0,0.15)" : "rgba(200,212,0,0.07)", marginBottom: isPro ? 18 : 14 }}/>
+
+            {/* Features */}
+            <ul style={{ listStyle:"none", display:"flex", flexDirection:"column", gap: isPro ? 11 : 8, marginBottom: isPro ? 24 : 18 }}>
                 {plan.features.map((ft, fi) => (
-                    <li key={fi} style={{ display:"flex", alignItems:"flex-start", gap:8, fontSize:"clamp(11px,1.5vw,13px)", color:ft.ok?"#9a9b8e":"#3a3b34", fontWeight:300, lineHeight:1.45, opacity:vis?1:0, transform:vis?"none":"translateX(-6px)", transition:`opacity .35s ease ${.28+index*.1+fi*.04}s,transform .35s ease ${.28+index*.1+fi*.04}s` }}>
-            <span style={{ width:13, height:13, minWidth:13, borderRadius:2, marginTop:1, background:ft.ok?"#C8D400":"transparent", border:`1px solid ${ft.ok?"#C8D400":"rgba(200,212,0,0.12)"}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-              {ft.ok&&<IconCheck/>}
-            </span>
+                    <li key={fi} style={{
+                        display:"flex", alignItems:"flex-start", gap:10,
+                        fontSize: isPro ? "clamp(12px,1.6vw,14px)" : "clamp(11px,1.4vw,12px)",
+                        color: ft.ok ? (isPremium ? "rgba(255,210,120,0.6)" : tk.featureColor) : (isPremium ? "rgba(255,184,0,0.15)" : "#2e2f28"),
+                        fontWeight: isPro ? 400 : 300, lineHeight:1.5,
+                        opacity: vis ? 1 : 0,
+                        transform: vis ? "none" : "translateX(-6px)",
+                        transition: `opacity .35s ease ${.28+index*.1+fi*.04}s, transform .35s ease ${.28+index*.1+fi*.04}s`,
+                    }}>
+                        <span style={{ width: isPro ? 16 : 13, height: isPro ? 16 : 13, minWidth: isPro ? 16 : 13, borderRadius:2, marginTop:1, background:ft.ok ? tk.checkBg : "transparent", border:`1px solid ${ft.ok ? tk.checkBorder : (isPremium ? "rgba(255,184,0,0.1)" : "rgba(200,212,0,0.08)")}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                            {ft.ok && <FontAwesomeIcon icon={faCheck} style={{ fontSize: isPro ? 9 : 7, color:tk.checkFg }}/>}
+                        </span>
                         {ft.t}
                     </li>
                 ))}
             </ul>
 
+            {/* CTA button */}
             <button onMouseEnter={() => setBHov(true)} onMouseLeave={() => setBHov(false)}
-                    style={{ width:"100%", padding:"11px 14px", position:"relative", overflow:"hidden", background:plan.featured?(bHov?"#d4e000":"#C8D400"):(bHov?"rgba(200,212,0,0.1)":"transparent"), color:plan.featured?"#0e0f0a":(bHov?"#C8D400":"#f2f2ec"), fontFamily:"var(--ff)", fontSize:"clamp(11px,1.6vw,13px)", fontWeight:plan.featured?600:500, border:`1px solid ${plan.featured?"#C8D400":(bHov?"rgba(200,212,0,0.4)":"rgba(200,212,0,0.2)")}`, borderRadius:4, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:7, transition:"all .18s ease" }}>
-                {plan.featured&&<span style={{ position:"absolute", inset:0, background:"linear-gradient(120deg,transparent,rgba(255,255,255,0.2),transparent)", transform:bHov?"translateX(100%)":"translateX(-100%)", transition:"transform .4s ease" }}/>}
-                <span style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:7 }}><IconBTC/> Оплатить крипто <IconArrow/></span>
+                    style={{
+                        width:"100%", padding: isPro ? "14px 16px" : "10px 14px",
+                        position:"relative", overflow:"hidden",
+                        background: bHov ? tk.btnBgHov : tk.btnBg,
+                        color: bHov ? tk.btnColorHov : tk.btnColor,
+                        fontFamily:"var(--ff)", fontSize: isPro ? "clamp(12px,1.8vw,14px)" : "clamp(10px,1.5vw,12px)",
+                        fontWeight: tk.btnWeight,
+                        border:`1px solid ${bHov ? tk.btnBorderHov : tk.btnBorder}`,
+                        borderRadius:4, cursor:"pointer",
+                        display:"flex", alignItems:"center", justifyContent:"center", gap:8,
+                        transform: bHov ? "translateY(-2px)" : "none",
+                        boxShadow: bHov && isPro ? "0 6px 24px rgba(200,212,0,0.35)" : "none",
+                        letterSpacing: isPremium ? "0.08em" : "0",
+                        transition:"all .18s ease",
+                    }}>
+                {isPro && <span style={{ position:"absolute", inset:0, background:"linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)", transform:bHov?"translateX(100%)":"translateX(-100%)", transition:"transform .45s ease" }}/>}
+                <span style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>
+                    <FontAwesomeIcon icon={faBitcoinSign} style={{ fontSize: isPro ? 13 : 11 }}/>
+                    Оплатить крипто
+                    <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: isPro ? 12 : 10 }}/>
+                </span>
             </button>
+
         </div>
     );
 }
 
+// ── Section ────────────────────────────────────────────────────────────────
+
 export default function Pricing() {
     const ref = useRef(null);
-    const [vis, setVis] = useState({});
+    const [vis, setVis]           = useState({});
     const [cryptoIdx, setCryptoIdx] = useState(0);
 
     useEffect(() => {
@@ -108,12 +368,19 @@ export default function Pricing() {
         return () => clearInterval(t);
     }, []);
 
-    const f = (k, d=0) => ({ opacity:vis[k]?1:0, transform:vis[k]?"none":"translateY(18px)", transition:`opacity .6s cubic-bezier(.22,1,.36,1) ${d}s,transform .6s cubic-bezier(.22,1,.36,1) ${d}s` });
+    const f = (k, d = 0) => ({
+        opacity: vis[k] ? 1 : 0,
+        transform: vis[k] ? "none" : "translateY(18px)",
+        transition: `opacity .65s cubic-bezier(.22,1,.36,1) ${d}s, transform .65s cubic-bezier(.22,1,.36,1) ${d}s`,
+    });
 
     return (
         <section id="pricing" ref={ref} style={{ padding:"clamp(48px,8vw,96px) clamp(16px,5vw,48px)", background:"#141510" }}>
-            <div style={{ maxWidth:1100, margin:"0 auto" }}>
-                <div data-fade="tag" style={f("tag")}><span style={{ fontSize:10, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>₿ Тарифы и оплата</span></div>
+            <div style={{ maxWidth:1120, margin:"0 auto" }}>
+
+                <div data-fade="tag" style={f("tag")}>
+                    <span style={{ fontSize:10, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>₿ Тарифы и оплата</span>
+                </div>
                 <h2 data-fade="h2" style={{ ...f("h2",.06), fontSize:"clamp(22px,5vw,44px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", margin:"12px 0 clamp(10px,2vw,14px)" }}>
                     Выберите<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>формат работы</em>
                 </h2>
@@ -121,12 +388,16 @@ export default function Pricing() {
                     Оплата принимается в криптовалюте через защищённый эквайринг.
                 </p>
 
-                <div className="price-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12, marginBottom:12 }}>
-                    {PLANS.map((p, i) => <PriceCard key={p.tier} plan={p} index={i}/>)}
+                {/* Cards — pro card is larger via CSS align-items stretch + padding */}
+                <div className="price-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14, marginBottom:14, alignItems:"start" }}>
+                    {PLANS.map((p, i) => (
+                        <PriceCard key={p.tier} plan={p} index={i} Icon={PLAN_ICONS[i]}/>
+                    ))}
                 </div>
 
-                <div data-fade="ticker" style={{ ...f("ticker",.3), padding:"clamp(10px,2vw,14px) clamp(14px,3vw,18px)", border:"1px solid rgba(200,212,0,0.08)", borderRadius:4, background:"rgba(200,212,0,0.012)" }}>
-                    <div style={{ fontSize:9, color:"#6b6c60", letterSpacing:"0.1em", fontFamily:"var(--mono)", textTransform:"uppercase", marginBottom:7, textAlign:"center" }}>Принимаем оплату</div>
+                {/* Crypto ticker */}
+                <div data-fade="ticker" style={{ ...f("ticker",.3), padding:"clamp(10px,2vw,14px) clamp(14px,3vw,18px)", border:"1px solid rgba(200,212,0,0.07)", borderRadius:4, background:"rgba(200,212,0,0.01)" }}>
+                    <div style={{ fontSize:9, color:"#4a4b42", letterSpacing:"0.1em", fontFamily:"var(--mono)", textTransform:"uppercase", marginBottom:7, textAlign:"center" }}>Принимаем оплату</div>
                     <div style={{ display:"flex", justifyContent:"center", alignItems:"center", gap:"clamp(4px,1.5vw,10px)", flexWrap:"wrap" }}>
                         {CRYPTOS.map((c, i) => (
                             <span key={c} style={{ fontSize:"clamp(9px,1.4vw,11px)", fontWeight:600, fontFamily:"var(--mono)", letterSpacing:"0.08em", color:i===cryptoIdx?"#C8D400":"#3a3b34", background:i===cryptoIdx?"rgba(200,212,0,0.08)":"transparent", padding:"2px 7px", borderRadius:3, border:`1px solid ${i===cryptoIdx?"rgba(200,212,0,0.22)":"transparent"}`, transition:"all .4s ease" }}>{c}</span>
@@ -136,13 +407,15 @@ export default function Pricing() {
             </div>
 
             <style>{`
+        @keyframes priceIn  { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+        @keyframes iconFloat{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        @keyframes glowPulse{ 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.14)} }
+        @keyframes scanLine { 0%{transform:translateY(-100%)} 100%{transform:translateY(400%)} }
         @media(max-width:800px){
-          .price-grid{grid-template-columns:1fr!important;max-width:380px;margin-left:auto;margin-right:auto}
-          .price-card-featured{order:-1!important}
+          .price-grid{grid-template-columns:1fr!important;max-width:400px;margin-left:auto;margin-right:auto}
+          .price-card-pro{order:-1!important}
         }
-        @media(max-width:480px){
-          .price-grid{max-width:100%!important}
-        }
+        @media(max-width:480px){ .price-grid{max-width:100%!important} }
       `}</style>
         </section>
     );
