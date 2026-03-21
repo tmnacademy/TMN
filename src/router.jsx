@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/mainPage.jsx";
-import Cabinet from "./pages/Cabinet.jsx";
+import Cabinet from "./pages/cabinet.jsx";
 import { AuthProvider } from "./auth/Authcontext.jsx";
 import PrivateRoute from "./auth/PrivateRoute.jsx";
 
