@@ -17,12 +17,6 @@ const IconMail  = () => <svg width="14" height="14" viewBox="0 0 15 15" fill="no
 const IconLock  = () => <svg width="13" height="13" viewBox="0 0 15 15" fill="none"><rect x="3" y="6.5" width="9" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><path d="M5 6.5V4.5a2.5 2.5 0 015 0v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>;
 const IconArrow = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
-const REASONS = [
-    { g:"◈", title:"Аналитика компаний",  desc:"Разбор финансовой отчётности и инвестиционных идей NYSE и NASDAQ" },
-    { g:"◆", title:"Ранний доступ",        desc:"Новые исследования и идеи до публичной публикации" },
-    { g:"Ξ",  title:"Без шума",             desc:"Только данные и логика — никакого теханализа и гадания" },
-];
-
 function fbErr(code) {
     return ({
         "auth/email-already-in-use":  "Email уже зарегистрирован — попробуйте войти.",
@@ -120,20 +114,6 @@ export default function Register() {
                         <p style={{ fontSize:"clamp(11px,1.5vw,14px)", color:"#9a9b8e", lineHeight:1.7, fontWeight:300, marginBottom:"clamp(18px,2.5vw,28px)", opacity:inView?1:0, transform:inView?"none":"translateX(-16px)", transition:"opacity .65s .17s,transform .65s .17s" }}>
                             {user ? "Вы уже вошли в систему. Перейдите в личный кабинет для оформления обучения." : "17 лет опыта. Стоимостное инвестирование на мировых рынках."}
                         </p>
-
-                        {!user && (
-                            <div style={{ display:"flex", flexDirection:"column", gap:"clamp(12px,2vw,18px)" }}>
-                                {REASONS.map((r, i) => (
-                                    <div key={i} style={{ display:"flex", gap:12, alignItems:"flex-start", opacity:inView?1:0, transform:inView?"none":"translateX(-14px)", transition:`opacity .55s ${.24+i*.1}s,transform .55s ${.24+i*.1}s` }}>
-                                        <div style={{ width:"clamp(30px,4vw,36px)", height:"clamp(30px,4vw,36px)", borderRadius:7, background:"rgba(200,212,0,0.07)", border:"1px solid rgba(200,212,0,0.18)", display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:"clamp(13px,2vw,15px)", fontWeight:700, color:"#C8D400", flexShrink:0 }}>{r.g}</div>
-                                        <div>
-                                            <div style={{ fontSize:"clamp(12px,1.6vw,13px)", fontWeight:500, color:"#f2f2ec", marginBottom:2 }}>{r.title}</div>
-                                            <div style={{ fontSize:"clamp(10px,1.3vw,12px)", color:"#6b6c60", lineHeight:1.5, fontWeight:300 }}>{r.desc}</div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
                     </div>
 
                     {/* RIGHT */}

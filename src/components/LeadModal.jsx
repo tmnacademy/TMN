@@ -94,7 +94,7 @@ export default function LeadModal() {
                             <div style={{ width:34, height:34, border:"1.5px solid #C8D400", borderRadius:7, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:10, fontWeight:600, color:"#C8D400", background:"rgba(200,212,0,0.05)", flexShrink:0 }}>TMN</div>
                             <div style={{ display:"flex", flexDirection:"column", lineHeight:1.1 }}>
                                 <span style={{ fontSize:14, fontWeight:600, color:"#f2f2ec", letterSpacing:"0.04em" }}>Academy</span>
-                                <span style={{ fontSize:9, color:"#6b6c60", letterSpacing:"0.18em", textTransform:"uppercase" }}>Research & Education</span>
+                                <span style={{ fontSize:9, color:"#6b6c60", letterSpacing:"0.18em", textTransform:"uppercase" }}>Исследовательские отчеты</span>
                             </div>
                         </div>
 
@@ -127,9 +127,6 @@ export default function LeadModal() {
                         <form onSubmit={submit} style={{ display:"flex", flexDirection:"column", gap:16, flex:1, paddingTop:4 }}>
                             <div>
                                 <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:8 }}>◈ Подписаться бесплатно</div>
-                                <h4 style={{ fontSize:"clamp(16px,2.2vw,20px)", fontWeight:600, color:"#f2f2ec", lineHeight:1.22, letterSpacing:"-0.015em", marginBottom:6 }}>
-                                    Войдите в круг<br/>профессиональных инвесторов
-                                </h4>
                                 <p style={{ fontSize:12, color:"#6b6c60", lineHeight:1.6 }}>Введите email — первый выпуск придёт сразу после подтверждения.</p>
                             </div>
 

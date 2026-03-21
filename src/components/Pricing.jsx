@@ -56,28 +56,28 @@ const PLAN_ICONS = [IconCoin, IconChartUp, IconCrown];
 
 // ── Data ───────────────────────────────────────────────────────────────────
 
-const CRYPTOS = ["NYSE","NASDAQ","EXANTE","Just2Trade","UTEX","S&P500","DOW","Russell"];
+const CRYPTOS = ["BTC","ETH","USDT","USDC","BNB","SOL","TON","MATIC"];
 const PLANS = [
-    { tier:"Базовый", name:"Базовый старт", price:"50–100", type:"basic", features:[
-            {t:"Основы стоимостного инвестирования",   ok:true },
-            {t:"2 занятия в месяц (теория + практика)", ok:true },
-            {t:"Финансовая отчётность компаний",  ok:true },
-            {t:"Обратная связь от автора",   ok:false},
-            {t:"Разбор личного портфеля",    ok:false},
+    { tier:"Модуль 1", name:"Базовый старт", price:"50–100", type:"basic", features:[
+            {t:"2 занятия в месяц по 1.5–2 часа",     ok:true },
+            {t:"Основы стоимостного инвестирования",  ok:true },
+            {t:"Разбор финансовых отчётов компаний",  ok:true },
+            {t:"Мастер-группа по субботам",           ok:false},
+            {t:"Личное сопровождение",                ok:false},
         ]},
-    { tier:"Профессиональный", name:"Инвестор-практик", price:"200–300", type:"pro", features:[
-            {t:"Квартальный интенсив (3–5 занятий)",     ok:true },
-            {t:"Обратная связь от автора",   ok:true },
-            {t:"Мастер-группа по субботам (1 год)",    ok:true },
-            {t:"Разбор реальных компаний NYSE/NASDAQ",    ok:true },
-            {t:"Разбор личного портфеля",    ok:false},
+    { tier:"Модуль 2", name:"Инвестор-практик", price:"200–300", type:"pro", features:[
+            {t:"3–5 занятий в квартал по 1.5–2 часа", ok:true },
+            {t:"Мастер-группа по субботам на 1 год",  ok:true },
+            {t:"Разбор компаний NYSE / NASDAQ",        ok:true },
+            {t:"Поддержка и сопровождение +$100–200", ok:true },
+            {t:"Личное сопровождение",                ok:false},
         ]},
-    { tier:"Премиум", name:"Личное наставничество", price:"1500–2500", type:"premium", features:[
-            {t:"Личное сопровождение Дмитрия Федоренко",   ok:true },
-            {t:"Разбор личного портфеля",    ok:true },
-            {t:"Кейсы фонда в реальном времени",      ok:true },
-            {t:"Персональный инвестиционный roadmap",       ok:true },
-            {t:"Приоритетный доступ",        ok:true },
+    { tier:"Модуль 3", name:"Личное наставничество", price:"1500–2500", type:"premium", features:[
+            {t:"Личное сопровождение 1–2 квартала",   ok:true },
+            {t:"Ежедневный контакт до 30 минут",      ok:true },
+            {t:"Задания по поиску и анализу компаний",ok:true },
+            {t:"Мастер-группа по субботам включена",  ok:true },
+            {t:"Требуется прохождение Модуля 2",      ok:true },
         ]},
 ];
 
@@ -329,11 +329,11 @@ function PriceCard({ plan, index, Icon }) {
                         transition:"all .18s ease",
                     }}>
                 {isPro && <span style={{ position:"absolute", inset:0, background:"linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)", transform:bHov?"translateX(100%)":"translateX(-100%)", transition:"transform .45s ease" }}/>}
-                <a href="https://t.me/ba_n_di_t_7_7_7" style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>
+                <span style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>
                     <FontAwesomeIcon icon={faBitcoinSign} style={{ fontSize: isPro ? 13 : 11 }}/>
-                    Записаться
+                    Оплатить крипто
                     <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: isPro ? 12 : 10 }}/>
-                </a>
+                </span>
             </button>
 
         </div>
@@ -379,13 +379,13 @@ export default function Pricing() {
             <div style={{ maxWidth:1120, margin:"0 auto" }}>
 
                 <div data-fade="tag" style={f("tag")}>
-                    <span style={{ fontSize:10, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>₿ Тарифы и оплата</span>
+                    <span style={{ fontSize:10, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>◈ Тарифы и оплата</span>
                 </div>
                 <h2 data-fade="h2" style={{ ...f("h2",.06), fontSize:"clamp(22px,5vw,44px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", margin:"12px 0 clamp(10px,2vw,14px)" }}>
-                    Формат<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>работы</em>
+                    Выберите<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>свой модуль</em>
                 </h2>
                 <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(12px,1.8vw,15px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:520, fontWeight:300, marginBottom:"clamp(20px,4vw,40px)" }}>
-                    Выберите тариф, который соответствует вашему уровню и целям. Оплата картой или переводом.
+                    Выберите формат обучения, который соответствует вашему уровню и целям. Принимаем оплату в криптовалюте.
                 </p>
 
                 {/* Cards — pro card is larger via CSS align-items stretch + padding */}
@@ -397,11 +397,36 @@ export default function Pricing() {
 
                 {/* Crypto ticker */}
                 <div data-fade="ticker" style={{ ...f("ticker",.3), padding:"clamp(10px,2vw,14px) clamp(14px,3vw,18px)", border:"1px solid rgba(200,212,0,0.07)", borderRadius:4, background:"rgba(200,212,0,0.01)" }}>
-                    <div style={{ fontSize:9, color:"#4a4b42", letterSpacing:"0.1em", fontFamily:"var(--mono)", textTransform:"uppercase", marginBottom:7, textAlign:"center" }}>Рекомендуемые брокеры</div>
+                    <div style={{ fontSize:9, color:"#4a4b42", letterSpacing:"0.1em", fontFamily:"var(--mono)", textTransform:"uppercase", marginBottom:7, textAlign:"center" }}>Принимаем оплату</div>
                     <div style={{ display:"flex", justifyContent:"center", alignItems:"center", gap:"clamp(4px,1.5vw,10px)", flexWrap:"wrap" }}>
                         {CRYPTOS.map((c, i) => (
                             <span key={c} style={{ fontSize:"clamp(9px,1.4vw,11px)", fontWeight:600, fontFamily:"var(--mono)", letterSpacing:"0.08em", color:i===cryptoIdx?"#C8D400":"#3a3b34", background:i===cryptoIdx?"rgba(200,212,0,0.08)":"transparent", padding:"2px 7px", borderRadius:3, border:`1px solid ${i===cryptoIdx?"rgba(200,212,0,0.22)":"transparent"}`, transition:"all .4s ease" }}>{c}</span>
                         ))}
+                    </div>
+                </div>
+
+                {/* Individual consultation */}
+                <div data-fade="consult" style={{ ...f("consult",.38), marginTop:14, padding:"clamp(16px,2.5vw,22px) clamp(18px,3vw,28px)", border:"1px solid rgba(200,212,0,0.1)", borderRadius:4, background:"rgba(200,212,0,0.02)", display:"flex", alignItems:"center", justifyContent:"space-between", gap:16, flexWrap:"wrap" }}>
+                    <div style={{ display:"flex", alignItems:"center", gap:14 }}>
+                        <div style={{ width:36, height:36, borderRadius:"50%", background:"rgba(200,212,0,0.07)", border:"1px solid rgba(200,212,0,0.18)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="#C8D400" strokeWidth="1.3"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="#C8D400" strokeWidth="1.3" strokeLinecap="round"/></svg>
+                        </div>
+                        <div>
+                            <div style={{ fontSize:"clamp(12px,1.6vw,14px)", fontWeight:500, color:"#f2f2ec", marginBottom:2 }}>Индивидуальная консультация</div>
+                            <div style={{ fontSize:"clamp(10px,1.3vw,12px)", color:"#6b6c60", fontWeight:300 }}>1 час персональной работы с Дмитрием Федоренко</div>
+                        </div>
+                    </div>
+                    <div style={{ display:"flex", alignItems:"center", gap:16, flexShrink:0 }}>
+                        <div style={{ textAlign:"right" }}>
+                            <div style={{ fontSize:"clamp(18px,2.8vw,24px)", fontWeight:700, color:"#C8D400", fontFamily:"var(--mono)", letterSpacing:"-0.03em", lineHeight:1 }}>$100</div>
+                            <div style={{ fontSize:9, color:"#4a4b42", fontFamily:"var(--mono)", marginTop:2 }}>за 1 час</div>
+                        </div>
+                        <a href="https://t.me/ba_n_di_t_7_7_7?text=Hello! I want to book an individual consultation. Email: " target="_blank" rel="noopener noreferrer"
+                           style={{ padding:"9px 16px", background:"transparent", border:"1px solid rgba(200,212,0,0.22)", borderRadius:4, color:"rgba(200,212,0,0.7)", fontSize:12, fontFamily:"var(--ff)", fontWeight:500, textDecoration:"none", whiteSpace:"nowrap", transition:"all .18s" }}
+                           onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(200,212,0,0.5)";e.currentTarget.style.color="#C8D400";e.currentTarget.style.background="rgba(200,212,0,0.06)";}}
+                           onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(200,212,0,0.22)";e.currentTarget.style.color="rgba(200,212,0,0.7)";e.currentTarget.style.background="transparent";}}>
+                            Записаться
+                        </a>
                     </div>
                 </div>
             </div>

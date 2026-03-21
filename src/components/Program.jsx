@@ -106,10 +106,10 @@ function LoupeIcon({ variant = 0, size = 96 }) {
 }
 
 const MODULES = [
-    { num:"01", glyph:"₿", title:"Основы фундаментального анализа", desc:"Что отличает фундаментальный подход от технического. Как читать данные, а не тренды. Построение аналитического фрейма с нуля.", topics:["Оценка стоимости","Макроконтекст","Базовые метрики"] },
-    { num:"02", glyph:"◈", title:"On-Chain аналитика", desc:"Чтение блокчейн-данных как первичного источника. MVRV, SOPR, адресная активность — как сигналы, а не шум.", topics:["MVRV / SOPR","Потоки бирж","Поведение китов"] },
-    { num:"03", glyph:"Ξ",  title:"Оценка проектов и токеномика", desc:"Как анализировать whitepaper, команду, токеномику и конкурентную среду. Построение собственных скорингов.", topics:["Токеномика","TVL-анализ","Конкуренты"] },
-    { num:"04", glyph:"◆", title:"Построение инвестиционной системы", desc:"Интеграция всех инструментов в персональную стратегию. Риск-менеджмент, портфельные принципы и принятие решений.", topics:["Риск-менеджмент","Портфель","Система входов"] },
+    { num:"01", title:"Основы стоимостного инвестирования", desc:"Стоимостное инвестирование — выявление недооценённых ценных бумаг путём фундаментального анализа. Минимум теории, никакого теханализа, никаких криптовалют.", topics:["Фундаментальный анализ","Финансовые отчёты","Бухгалтерский учёт"] },
+    { num:"02", title:"Анализ компаний и поиск идей",        desc:"Поиск и анализ компаний, акции которых котируются на NYSE, NASDAQ и других фондовых биржах. Практические разборы реальных кейсов.",                           topics:["NYSE / NASDAQ","Оценка компаний","Инвестиционные идеи"] },
+    { num:"03",  title:"Инвестиционный портфель",             desc:"Построение и управление инвестиционным портфелем. Практические занятия по работе с различными классами активов на реальных примерах.",                           topics:["Акции / Облигации","ETF / IPO","Опционы"] },
+    { num:"04", title:"Практика под нагрузкой",               desc:"Курс включает преимущественно практические занятия по поиску и анализу ценных бумаг. Работа с реальными кейсами фонда в режиме реального времени.",              topics:["Разбор кейсов","Реальные сделки","Система решений"] },
 ];
 
 function ModuleCard({ mod, isOdd, isLastRow, index }) {
@@ -198,13 +198,36 @@ export default function Program() {
             <div style={{ maxWidth:1100, margin:"0 auto" }}>
                 <div data-fade="tag" style={f("tag")}><span style={{ fontSize:11, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>◆ Программа обучения</span></div>
                 <h2 data-fade="h2" style={{ ...f("h2",.06), fontSize:"clamp(26px,5vw,44px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", margin:"14px 0 clamp(14px,2.5vw,20px)" }}>
-                    4 модуля —<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>полная методология</em>
+                    4 модуля —<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>от теории к практике</em>
                 </h2>
-                <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(13px,2vw,16px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:540, fontWeight:300, marginBottom:"clamp(28px,4.5vw,44px)" }}>
-                    От базовых принципов оценки до построения собственной инвестиционной системы.
+                <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(13px,2vw,16px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:580, fontWeight:300, marginBottom:"clamp(28px,4.5vw,44px)" }}>
+                    Практические занятия по поиску и анализу ценных бумаг на NYSE и NASDAQ. Акции, Облигации, Опционы, IPO, ETF. Никакого технического анализа. Никаких криптовалют.
                 </p>
                 <div className="prog-grid" style={{ border:"1px solid rgba(200,212,0,0.1)", borderRadius:4, overflow:"hidden", display:"grid", gridTemplateColumns:"1fr 1fr" }}>
                     {MODULES.map((mod, i) => <ModuleCard key={mod.num} mod={mod} isOdd={i%2===0} isLastRow={i>=MODULES.length-2} index={i}/>)}
+                </div>
+
+                {/* YouTube links */}
+                <div data-fade="yt" style={{ ...f("yt", .2), marginTop:"clamp(24px,4vw,36px)", display:"flex", gap:12, flexWrap:"wrap" }}>
+                    {[
+                        { label:"Введение в стоимостное инвестирование", url:"https://www.youtube.com/watch?v=BrjW5BPhuCY" },
+                        { label:"Короткий обзор методологии", url:"https://www.youtube.com/shorts/9T95M5kkZws" },
+                    ].map((v, i) => (
+                        <a key={i} href={v.url} target="_blank" rel="noopener noreferrer" style={{
+                            display:"inline-flex", alignItems:"center", gap:8,
+                            padding:"10px 16px",
+                            background:"rgba(200,212,0,0.04)",
+                            border:"1px solid rgba(200,212,0,0.15)",
+                            borderRadius:4, textDecoration:"none",
+                            color:"#9a9b8e", fontSize:"clamp(11px,1.5vw,13px)", fontWeight:400,
+                            transition:"all .18s ease",
+                        }}
+                           onMouseEnter={e=>{ e.currentTarget.style.borderColor="rgba(200,212,0,0.4)"; e.currentTarget.style.color="#C8D400"; e.currentTarget.style.background="rgba(200,212,0,0.07)"; }}
+                           onMouseLeave={e=>{ e.currentTarget.style.borderColor="rgba(200,212,0,0.15)"; e.currentTarget.style.color="#9a9b8e"; e.currentTarget.style.background="rgba(200,212,0,0.04)"; }}>
+                            <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="#C8D400"/><path d="M7 6l5 3-5 3V6z" fill="#0e0f0a"/></svg>
+                            {v.label}
+                        </a>
+                    ))}
                 </div>
             </div>
             <style>{`
