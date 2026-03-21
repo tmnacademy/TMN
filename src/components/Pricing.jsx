@@ -329,11 +329,11 @@ function PriceCard({ plan, index, Icon }) {
                         transition:"all .18s ease",
                     }}>
                 {isPro && <span style={{ position:"absolute", inset:0, background:"linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)", transform:bHov?"translateX(100%)":"translateX(-100%)", transition:"transform .45s ease" }}/>}
-                <span style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>
-                    <FontAwesomeIcon href={"https://t.me/ba_n_di_t_7_7_7"} icon={faBitcoinSign} style={{ fontSize: isPro ? 13 : 11 }}/>
+                <a href="https://t.me/ba_n_di_t_7_7_7" style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>
+                    <FontAwesomeIcon icon={faBitcoinSign} style={{ fontSize: isPro ? 13 : 11 }}/>
                     Оплатить крипто
                     <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: isPro ? 12 : 10 }}/>
-                </span>
+                </a>
             </button>
 
         </div>
