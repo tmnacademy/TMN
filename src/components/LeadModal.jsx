@@ -5,10 +5,10 @@ const IconMail  = () => <svg width="15" height="15" viewBox="0 0 15 15" fill="no
 const IconArrow = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
 const PERKS = [
-    "Еженедельный фундаментальный разбор рынков",
-    "Сигналы на основе данных, а не чутья",
-    "Ранний доступ к новым исследованиям",
-    "Уведомления о запуске программы",
+    "Еженедельный разбор компаний NYSE и NASDAQ",
+    "Инвестиционные идеи на основе данных, а не чутья",
+    "Ранний доступ к исследованиям по стоимостному инвестированию",
+    "Уведомления о старте новых модулей обучения",
 ];
 
 export default function LeadModal() {
@@ -105,12 +105,12 @@ export default function LeadModal() {
                             </div>
                         </div>
 
-                        <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:10 }}>◈ Бесплатная подписка</div>
+                        <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:10 }}>◈ Бесплатная рассылка</div>
                         <h3 style={{ fontSize:"clamp(18px,2.5vw,24px)", fontWeight:600, color:"#f2f2ec", lineHeight:1.18, letterSpacing:"-0.02em", marginBottom:12 }}>
-                            Получайте аналитику<br/><span style={{ color:"#C8D400" }}>раньше всех</span>
+                            Инвестируйте<br/><span style={{ color:"#C8D400" }}>на основе данных</span>
                         </h3>
                         <p style={{ fontSize:13, color:"#9a9b8e", lineHeight:1.7, fontWeight:300, marginBottom:24 }}>
-                            17 лет опыта в одной рассылке. Только важное.
+                            17 лет опыта. Стоимостное инвестирование на мировых рынках.
                         </p>
 
                         {/* Perks */}
@@ -154,7 +154,7 @@ export default function LeadModal() {
                     {!sent ? (
                         <form onSubmit={submit} style={{ display:"flex", flexDirection:"column", gap:16, flex:1, paddingTop:4 }}>
                             <div>
-                                <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:8 }}>₿ Подписаться бесплатно</div>
+                                <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:8 }}>◈ Подписаться бесплатно</div>
                                 <h4 style={{ fontSize:"clamp(16px,2.2vw,20px)", fontWeight:600, color:"#f2f2ec", lineHeight:1.22, letterSpacing:"-0.015em", marginBottom:6 }}>
                                     Войдите в круг<br/>профессиональных инвесторов
                                 </h4>
@@ -192,7 +192,7 @@ export default function LeadModal() {
                                 <span style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>Подписаться <IconArrow/></span>
                             </button>
 
-                            <p style={{ fontSize:10, color:"#3a3b34", textAlign:"center", fontFamily:"monospace" }}>5,000+ подписчиков · Бесплатно навсегда</p>
+                            <p style={{ fontSize:10, color:"#3a3b34", textAlign:"center", fontFamily:"monospace" }}>Сообщество инвесторов · Бесплатно навсегда</p>
                         </form>
                     ) : (
                         <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", gap:18, padding:"16px 0" }}>

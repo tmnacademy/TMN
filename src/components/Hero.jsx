@@ -138,14 +138,14 @@ export default function Hero() {
 
                     {/* H1 */}
                     <h1 style={{ fontSize:"clamp(26px,5vw,60px)", fontWeight:600, lineHeight:1.08, letterSpacing:"-0.022em", marginBottom:"clamp(12px,2vw,20px)", display:"flex", flexWrap:"wrap", gap:".18em" }}>
-                        {["Фундаментальный","анализ","крипторынков"].map((w,i)=>(
+                        {["Зарабатывайте","на анализе","бизнеса"].map((w,i)=>(
                             <span key={w} style={{ display:"inline-block", opacity:h1?1:0, transform:h1?"none":"translateY(24px)", transition:`opacity .7s cubic-bezier(.22,1,.36,1) ${i*.12}s,transform .7s cubic-bezier(.22,1,.36,1) ${i*.12}s`, color:i===1?"#C8D400":"inherit" }}>{w}</span>
                         ))}
                     </h1>
 
                     {/* Sub */}
                     <p style={{ ...rev(phase>=3), fontSize:"clamp(12px,1.8vw,15px)", color:"#9a9b8e", maxWidth:440, lineHeight:1.75, marginBottom:"clamp(20px,3vw,36px)", fontWeight:300 }}>
-                        Криптовалюта без хаоса — системный подход, основанный на 17 годах опыта и строгой методологии фундаментального анализа.
+                        Обучение стоимостному инвестированию на NYSE и NASDAQ от эксперта с 17-летним опытом. Только фундаментальный анализ, никакой крипты и теханализа.
                     </p>
 
                     {/* CTAs */}

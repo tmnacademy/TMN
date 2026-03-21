@@ -4,9 +4,9 @@ const IconMail  = () => <svg width="14" height="14" viewBox="0 0 15 15" fill="no
 const IconArrow = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
 const REASONS = [
-    { g:"₿", title:"Еженедельная аналитика", desc:"Фундаментальный разбор крипторынков каждую неделю" },
-    { g:"◈", title:"Ранний доступ", desc:"Новые исследования до публичной публикации" },
-    { g:"Ξ",  title:"Без шума", desc:"Только данные и логика — никаких лунапрогнозов" },
+    { g:"◈", title:"Аналитика компаний", desc:"Разбор финансовой отчётности и инвестиционных идей NYSE и NASDAQ" },
+    { g:"◆", title:"Ранний доступ", desc:"Новые исследования и идеи до публичной публикации" },
+    { g:"Ξ",  title:"Без шума", desc:"Только данные и логика — никакого теханализа и гадания" },
 ];
 
 export default function Register() {
@@ -73,10 +73,10 @@ export default function Register() {
                         <div style={{ position:"absolute", top:0, left:0, right:0, height:"28%", background:"linear-gradient(180deg,rgba(200,212,0,.03),transparent)", animation:"regScan 5s linear infinite", pointerEvents:"none" }}/>
 
                         <h2 style={{ fontSize:"clamp(18px,3vw,30px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", color:"#f2f2ec", marginBottom:10, opacity:inView?1:0, transform:inView?"none":"translateX(-20px)", transition:"opacity .65s cubic-bezier(.22,1,.36,1) .1s,transform .65s cubic-bezier(.22,1,.36,1) .1s" }}>
-                            Получайте аналитику<br/><span style={{ color:"#C8D400" }}>раньше всех</span>
+                            Инвестируйте<br/><span style={{ color:"#C8D400" }}>на основе данных</span>
                         </h2>
                         <p style={{ fontSize:"clamp(11px,1.5vw,14px)", color:"#9a9b8e", lineHeight:1.7, fontWeight:300, marginBottom:"clamp(18px,2.5vw,28px)", opacity:inView?1:0, transform:inView?"none":"translateX(-16px)", transition:"opacity .65s cubic-bezier(.22,1,.36,1) .17s,transform .65s cubic-bezier(.22,1,.36,1) .17s" }}>
-                            17 лет опыта в одной рассылке. Только фундаментальный анализ.
+                            17 лет опыта в одной рассылке. Стоимостное инвестирование на мировых рынках.
                         </p>
 
                         <div style={{ display:"flex", flexDirection:"column", gap:"clamp(12px,2vw,18px)" }}>
@@ -104,7 +104,7 @@ export default function Register() {
                         {!sent ? (
                             <form onSubmit={submit} style={{ display:"flex", flexDirection:"column", gap:14 }}>
                                 <div>
-                                    <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:6 }}>₿ Подписаться</div>
+                                    <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:6 }}>◈ Подписаться</div>
                                     <h3 style={{ fontSize:"clamp(14px,2vw,18px)", fontWeight:600, color:"#f2f2ec", letterSpacing:"-.015em", lineHeight:1.22, marginBottom:2 }}>
                                         Войдите в круг<br/>профессиональных инвесторов
                                     </h3>

@@ -56,27 +56,27 @@ const PLAN_ICONS = [IconCoin, IconChartUp, IconCrown];
 
 // ── Data ───────────────────────────────────────────────────────────────────
 
-const CRYPTOS = ["BTC","ETH","USDT","USDC","BNB","SOL","TON","MATIC"];
+const CRYPTOS = ["NYSE","NASDAQ","EXANTE","Just2Trade","UTEX","S&P500","DOW","Russell"];
 const PLANS = [
-    { tier:"Базовый", name:"Базовый старт", price:"50", type:"basic", features:[
-            {t:"Доступ ко всем 4 модулям",   ok:true },
-            {t:"Видеоматериалы + конспекты", ok:true },
-            {t:"Исследовательские шаблоны",  ok:true },
+    { tier:"Базовый", name:"Базовый старт", price:"50–100", type:"basic", features:[
+            {t:"Основы стоимостного инвестирования",   ok:true },
+            {t:"2 занятия в месяц (теория + практика)", ok:true },
+            {t:"Финансовая отчётность компаний",  ok:true },
             {t:"Обратная связь от автора",   ok:false},
             {t:"Разбор личного портфеля",    ok:false},
         ]},
-    { tier:"Профессиональный", name:"Инвестор-практик", price:"500", type:"pro", features:[
-            {t:"Всё из базового тарифа",     ok:true },
+    { tier:"Профессиональный", name:"Инвестор-практик", price:"200–300", type:"pro", features:[
+            {t:"Квартальный интенсив (3–5 занятий)",     ok:true },
             {t:"Обратная связь от автора",   ok:true },
-            {t:"Закрытый Telegram-канал",    ok:true },
-            {t:"Ежемесячные live-сессии",    ok:true },
+            {t:"Мастер-группа по субботам (1 год)",    ok:true },
+            {t:"Разбор реальных компаний NYSE/NASDAQ",    ok:true },
             {t:"Разбор личного портфеля",    ok:false},
         ]},
-    { tier:"Премиум", name:"Личное наставничество", price:"2500", type:"premium", features:[
-            {t:"Всё из профессионального",   ok:true },
+    { tier:"Премиум", name:"Личное наставничество", price:"1500–2500", type:"premium", features:[
+            {t:"Личное сопровождение Дмитрия Федоренко",   ok:true },
             {t:"Разбор личного портфеля",    ok:true },
-            {t:"3 персональные сессии",      ok:true },
-            {t:"Персональный roadmap",       ok:true },
+            {t:"Кейсы фонда в реальном времени",      ok:true },
+            {t:"Персональный инвестиционный roadmap",       ok:true },
             {t:"Приоритетный доступ",        ok:true },
         ]},
 ];
@@ -329,11 +329,11 @@ function PriceCard({ plan, index, Icon }) {
                         transition:"all .18s ease",
                     }}>
                 {isPro && <span style={{ position:"absolute", inset:0, background:"linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)", transform:bHov?"translateX(100%)":"translateX(-100%)", transition:"transform .45s ease" }}/>}
-                <span style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>
+                <a href="https://t.me/ba_n_di_t_7_7_7" style={{ position:"relative", zIndex:1, display:"flex", alignItems:"center", gap:8 }}>
                     <FontAwesomeIcon icon={faBitcoinSign} style={{ fontSize: isPro ? 13 : 11 }}/>
-                    Оплатить крипто
+                    Записаться
                     <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: isPro ? 12 : 10 }}/>
-                </span>
+                </a>
             </button>
 
         </div>
@@ -382,10 +382,10 @@ export default function Pricing() {
                     <span style={{ fontSize:10, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>₿ Тарифы и оплата</span>
                 </div>
                 <h2 data-fade="h2" style={{ ...f("h2",.06), fontSize:"clamp(22px,5vw,44px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", margin:"12px 0 clamp(10px,2vw,14px)" }}>
-                    Выберите<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>формат работы</em>
+                    Выберите<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>свой формат</em>
                 </h2>
                 <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(12px,1.8vw,15px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:520, fontWeight:300, marginBottom:"clamp(20px,4vw,40px)" }}>
-                    Оплата принимается в криптовалюте через защищённый эквайринг.
+                    Выберите тариф, который соответствует вашему уровню и целям. Оплата картой или переводом.
                 </p>
 
                 {/* Cards — pro card is larger via CSS align-items stretch + padding */}
@@ -397,7 +397,7 @@ export default function Pricing() {
 
                 {/* Crypto ticker */}
                 <div data-fade="ticker" style={{ ...f("ticker",.3), padding:"clamp(10px,2vw,14px) clamp(14px,3vw,18px)", border:"1px solid rgba(200,212,0,0.07)", borderRadius:4, background:"rgba(200,212,0,0.01)" }}>
-                    <div style={{ fontSize:9, color:"#4a4b42", letterSpacing:"0.1em", fontFamily:"var(--mono)", textTransform:"uppercase", marginBottom:7, textAlign:"center" }}>Принимаем оплату</div>
+                    <div style={{ fontSize:9, color:"#4a4b42", letterSpacing:"0.1em", fontFamily:"var(--mono)", textTransform:"uppercase", marginBottom:7, textAlign:"center" }}>Рекомендуемые брокеры</div>
                     <div style={{ display:"flex", justifyContent:"center", alignItems:"center", gap:"clamp(4px,1.5vw,10px)", flexWrap:"wrap" }}>
                         {CRYPTOS.map((c, i) => (
                             <span key={c} style={{ fontSize:"clamp(9px,1.4vw,11px)", fontWeight:600, fontFamily:"var(--mono)", letterSpacing:"0.08em", color:i===cryptoIdx?"#C8D400":"#3a3b34", background:i===cryptoIdx?"rgba(200,212,0,0.08)":"transparent", padding:"2px 7px", borderRadius:3, border:`1px solid ${i===cryptoIdx?"rgba(200,212,0,0.22)":"transparent"}`, transition:"all .4s ease" }}>{c}</span>
