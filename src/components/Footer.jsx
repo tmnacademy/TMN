@@ -1,6 +1,5 @@
 import { useState } from "react";
 import LegalModal from "./LegalModal";
-import {I} from "vite/dist/node/chunks/logger.js";
 
 const IconYT = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="2.5" width="12" height="9" rx="2.5" stroke="currentColor" strokeWidth="1.2"/><path d="M5.5 5.5l4 2-4 2V5.5z" fill="currentColor"/></svg>;
 const IconExternal = () => <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M4.5 2H2a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><path d="M6.5 1h3.5v3.5M10 1L6 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
