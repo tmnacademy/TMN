@@ -201,7 +201,7 @@ export default function Program() {
                     Программа обучения<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>Полная методология</em>
                 </h2>
                 <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(13px,2vw,16px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:580, fontWeight:300, marginBottom:"clamp(28px,4.5vw,44px)" }}>
-                    Практические занятия по поиску и анализу ценных бумаг на NYSE и NASDAQ. Акции, Облигации, Опционы, IPO, ETF. Никакого технического анализа. Никаких криптовалют.
+                    От базовых принципов оценки до построения собственной инвестиционной системы.
                 </p>
                 <div className="prog-grid" style={{ border:"1px solid rgba(200,212,0,0.1)", borderRadius:4, overflow:"hidden", display:"grid", gridTemplateColumns:"1fr 1fr" }}>
                     {MODULES.map((mod, i) => <ModuleCard key={mod.num} mod={mod} isOdd={i%2===0} isLastRow={i>=MODULES.length-2} index={i}/>)}

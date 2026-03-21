@@ -139,7 +139,7 @@ export default function Hero() {
 
                     {/* H1 */}
                     <h1 style={{ fontSize:"clamp(26px,5vw,60px)", fontWeight:600, lineHeight:1.08, letterSpacing:"-0.022em", marginBottom:"clamp(12px,2vw,20px)", display:"flex", flexWrap:"wrap", gap:".18em" }}>
-                        {["Фундаментальный","анализ","крипторынков"].map((w,i)=>(
+                        {["Инвестиционные исследования"," | ","Анализ ценных бумаг"].map((w,i)=>(
                             <span key={w} style={{ display:"inline-block", opacity:h1?1:0, transform:h1?"none":"translateY(24px)", transition:`opacity .7s cubic-bezier(.22,1,.36,1) ${i*.12}s,transform .7s cubic-bezier(.22,1,.36,1) ${i*.12}s`, color:i===1?"#C8D400":"inherit" }}>{w}</span>
                         ))}
                     </h1>
