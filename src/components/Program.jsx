@@ -198,7 +198,7 @@ export default function Program() {
             <div style={{ maxWidth:1100, margin:"0 auto" }}>
                 <div data-fade="tag" style={f("tag")}><span style={{ fontSize:11, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>◆ Программа обучения</span></div>
                 <h2 data-fade="h2" style={{ ...f("h2",.06), fontSize:"clamp(26px,5vw,44px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", margin:"14px 0 clamp(14px,2.5vw,20px)" }}>
-                    4 модуля —<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>от теории к практике</em>
+                    Программа обучения<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>Полная методология</em>
                 </h2>
                 <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(13px,2vw,16px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:580, fontWeight:300, marginBottom:"clamp(28px,4.5vw,44px)" }}>
                     Практические занятия по поиску и анализу ценных бумаг на NYSE и NASDAQ. Акции, Облигации, Опционы, IPO, ETF. Никакого технического анализа. Никаких криптовалют.

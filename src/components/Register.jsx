@@ -109,7 +109,7 @@ export default function Register() {
                         <div style={{ position:"absolute", top:0, left:0, right:0, height:"28%", background:"linear-gradient(180deg,rgba(200,212,0,.03),transparent)", animation:"regScan 5s linear infinite", pointerEvents:"none" }}/>
 
                         <h2 style={{ fontSize:"clamp(18px,3vw,30px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", color:"#f2f2ec", marginBottom:10, opacity:inView?1:0, transform:inView?"none":"translateX(-20px)", transition:"opacity .65s .1s,transform .65s .1s" }}>
-                            {user ? <>Добро пожаловать<br/><span style={{ color:"#C8D400" }}>в кабинет</span></> : <>Инвестируйте<br/><span style={{ color:"#C8D400" }}>на основе данных</span></>}
+                            {user ? <>Добро пожаловать<br/><span style={{ color:"#C8D400" }}>в кабинет</span></> : <>Получайте аналитику<br/><span style={{ color:"#C8D400" }}>раньше всех</span></>}
                         </h2>
                         <p style={{ fontSize:"clamp(11px,1.5vw,14px)", color:"#9a9b8e", lineHeight:1.7, fontWeight:300, marginBottom:"clamp(18px,2.5vw,28px)", opacity:inView?1:0, transform:inView?"none":"translateX(-16px)", transition:"opacity .65s .17s,transform .65s .17s" }}>
                             {user ? "Вы уже вошли в систему. Перейдите в личный кабинет для оформления обучения." : "17 лет опыта. Стоимостное инвестирование на мировых рынках."}
@@ -151,7 +151,7 @@ export default function Register() {
                                 <div>
                                     <div style={{ fontSize:10, color:"#C8D400", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:6 }}>◈ {mode === "register" ? "Регистрация" : "Вход"}</div>
                                     <h3 style={{ fontSize:"clamp(14px,2vw,18px)", fontWeight:600, color:"#f2f2ec", letterSpacing:"-.015em", lineHeight:1.22, marginBottom:2 }}>
-                                        {mode === "register" ? <>Войдите в круг<br/>профессиональных инвесторов</> : <>С возвращением</>}
+                                        {mode === "register" ? <div></div> : <>С возвращением</>}
                                     </h3>
                                 </div>
 

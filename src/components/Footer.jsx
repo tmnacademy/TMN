@@ -40,7 +40,7 @@ export default function Footer() {
                                 </div>
                             </a>
                             <p style={{ fontSize:"clamp(11px,1.5vw,13px)", color:"#4a4b42", maxWidth:240, lineHeight:1.55 }}>
-                                Стоимостное инвестирование на NYSE и NASDAQ. 17 лет опыта.
+                                Инвестиционные исследования | Анализ ценных бумаг
                             </p>
                         </div>
 
@@ -49,9 +49,9 @@ export default function Footer() {
                             <div>
                                 <div style={{ fontSize:9, fontWeight:500, color:"#6b6c60", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:12 }}>Платформа</div>
                                 <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-                                    <FooterLink onClick={() => scrollTo("program")}>Программа</FooterLink>
-                                    <FooterLink onClick={() => scrollTo("pricing")}>Тарифы</FooterLink>
-                                    <FooterLink onClick={() => scrollTo("about")}>Об авторе</FooterLink>
+                                    <FooterLink onClick={() => scrollTo("program")}>Research</FooterLink>
+                                    <FooterLink onClick={() => scrollTo("pricing")}>Программа</FooterLink>
+                                    <FooterLink onClick={() => scrollTo("about")}>Тарифы</FooterLink>
                                 </div>
                             </div>
                             <div>
