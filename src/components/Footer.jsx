@@ -57,8 +57,9 @@ export default function Footer() {
                             <div>
                                 <div style={{ fontSize:9, fontWeight:500, color:"#6b6c60", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:12 }}>Ресурсы</div>
                                 <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-                                    <FooterLink href="https://instagram.com/the_my_notes">Instagram</FooterLink>
-                                    <FooterLink href="https://t.me/themynotes">Telegram</FooterLink>
+                                    <FooterLink href="https://www.instagram.com/tmnacademy">Instagram</FooterLink>
+                                    <FooterLink href="https://t.me/TMNAcademy">Telegram</FooterLink>
+                                    <FooterLink href="https://www.tiktok.com/@tmnacademy">Tik Tok</FooterLink>
                                 </div>
                             </div>
                         </div>
