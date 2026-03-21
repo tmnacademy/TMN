@@ -36,7 +36,7 @@ export default function Footer() {
                                 <div style={{ width:30, height:30, border:"1.5px solid #C8D400", borderRadius:5, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"var(--mono)", fontSize:9, fontWeight:600, color:"#C8D400", background:"rgba(200,212,0,0.05)" }}>TMN</div>
                                 <div style={{ display:"flex", flexDirection:"column", lineHeight:1.1 }}>
                                     <span style={{ fontSize:14, fontWeight:600, color:"#f2f2ec", letterSpacing:"0.04em" }}>Academy</span>
-                                    <span style={{ fontSize:8, color:"#6b6c60", letterSpacing:"0.2em", textTransform:"uppercase" }}>Research & Education</span>
+                                    <span style={{ fontSize:8, color:"#6b6c60", letterSpacing:"0.2em", textTransform:"uppercase" }}>Исследовательские отчеты</span>
                                 </div>
                             </a>
                             <p style={{ fontSize:"clamp(11px,1.5vw,13px)", color:"#4a4b42", maxWidth:240, lineHeight:1.55 }}>

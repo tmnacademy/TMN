@@ -1,4 +1,4 @@
-import { useEffect, useRef} from "react";
+import { useEffect, useRef, useState } from "react";
 
 const IconYT = () => <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="#C8D400"/><path d="M7 6l5 3-5 3V6z" fill="#0e0f0a"/></svg>;
 const IconExt = () => <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M4.5 2H2a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><path d="M6.5 1h3.5v3.5M10 1L6 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
@@ -30,6 +30,7 @@ const hidden = (dir = "up") => ({
 
 export default function About() {
     const ref = useRef(null);
+    const [ytHov, setYtHov] = useState(false);
     useReveal(ref);
 
     return (
@@ -88,9 +89,13 @@ export default function About() {
                     {/* Text */}
                     <div data-anim data-delay="0.18" style={hidden("right")}>
                         <div style={{ width:40, height:2, background:"#C8D400", marginBottom:24 }}/>
-                        {["Инвестор-практик с опытом более 17 лет на мировых финансовых рынках NYSE и NASDAQ. Специализируюсь на поиске недооцененных компаний с высоким потенциалом роста.", "Автор уникальной методики обучения под нагрузкой для профессиональных инвесторов. Никаких графиков и гадания — только глубокий анализ финансовой отчётности."].map((t,i) => (
+                        {["Инвестор-практик с 17-летним опытом работы на международных финансовых рынках. ", "Специализация – стоимостное инвестирование опираясь на фундаментальный анализ.", "Ознакомится с инвестиционными исследованиями"].map((t,i) => (
                             <p key={i} style={{ fontSize:"clamp(13px,1.8vw,15px)", color:"#9a9b8e", lineHeight:1.8, marginBottom:14, fontWeight:300 }}>{t}</p>
                         ))}
+                        <a href="https://www.youtube.com/@The_My_Notes/videos" target="_blank" rel="noopener noreferrer" onMouseEnter={() => setYtHov(true)} onMouseLeave={() => setYtHov(false)}
+                           style={{ marginTop:14, display:"inline-flex", alignItems:"center", gap:10, padding:"11px 18px", border:`1px solid ${ytHov ? "rgba(200,212,0,0.45)" : "rgba(200,212,0,0.2)"}`, borderRadius:4, textDecoration:"none", color: ytHov ? "#C8D400" : "#f2f2ec", fontSize:13, fontWeight:500, background: ytHov ? "rgba(200,212,0,0.07)" : "transparent", transform: ytHov ? "translateY(-1px)" : "none", boxShadow: ytHov ? "0 4px 14px rgba(200,212,0,0.12)" : "none", transition:"all 0.2s ease" }}>
+                            <IconYT/> YouTube-канал — TheMyNotes <span style={{ opacity:0.5 }}><IconExt/></span>
+                        </a>
                     </div>
                 </div>
             </div>

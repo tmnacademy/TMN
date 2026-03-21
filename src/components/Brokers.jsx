@@ -5,14 +5,13 @@ const IconExt   = () => <svg width="11" height="11" viewBox="0 0 11 11" fill="no
 const IconCheck = () => <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#C8D400" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 const IconGlobe = () => <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#C8D400" strokeWidth="1.4"/><path d="M10 2C8 5 7 7.5 7 10s1 5 3 8M10 2c2 3 3 5.5 3 8s-1 5-3 8" stroke="#C8D400" strokeWidth="1.4"/><line x1="2" y1="10" x2="18" y2="10" stroke="#C8D400" strokeWidth="1.4"/><line x1="3" y1="6" x2="17" y2="6" stroke="#C8D400" strokeWidth="1.4" opacity="0.5"/><line x1="3" y1="14" x2="17" y2="14" stroke="#C8D400" strokeWidth="1.4" opacity="0.5"/></svg>;
 
-// ── TODO: replace # with your actual referral links ────────────────────────
 const BROKERS = [
     {
         name: "EXANTE",
         tag: "Прямой доступ к рынкам",
         desc: "Профессиональная платформа с прямым доступом к NYSE, NASDAQ и более 50 мировым биржам. Единый счёт для всех классов активов.",
         perks: ["Прямой доступ NYSE / NASDAQ", "50+ мировых бирж", "Единый счёт для всех активов"],
-        href: "#", // TODO: вставить реферальную ссылку EXANTE
+        href: "https://exante.eu/p/10863/",
         accent: "#C8D400",
     },
     {
@@ -20,7 +19,7 @@ const BROKERS = [
         tag: "Широкий выбор инструментов",
         desc: "Брокер с широким набором инвестиционных инструментов, низкими комиссиями и удобным интерфейсом для долгосрочных инвесторов.",
         perks: ["Низкие комиссии", "Акции, ETF, опционы", "Удобный интерфейс"],
-        href: "#", // TODO: вставить реферальную ссылку Just2Trade
+        href: "https://just2trade.online/ref/D110FBF46",
         accent: "#C8D400",
     },
     {
@@ -28,7 +27,7 @@ const BROKERS = [
         tag: "Инновации в трейдинге",
         desc: "Современная платформа с инновационными инструментами анализа. Подходит для активных инвесторов, работающих с американскими рынками.",
         perks: ["Инновационные инструменты", "Рынки США", "Расширенная аналитика"],
-        href: "#", // TODO: вставить реферальную ссылку UTEX
+        href: "https://utex.io/ru/?campaignId=THEMYNOTES",
         accent: "#C8D400",
     },
 ];
@@ -160,14 +159,6 @@ export default function Brokers() {
                     {BROKERS.map((b, i) => (
                         <BrokerCard key={b.name} broker={b} index={i} vis={vis}/>
                     ))}
-                </div>
-
-                {/* Referral note */}
-                <div style={{ marginTop:20, padding:"14px 18px", background:"rgba(200,212,0,0.03)", border:"1px solid rgba(200,212,0,0.08)", borderRadius:4, display:"flex", alignItems:"flex-start", gap:10, opacity:vis?1:0, transition:"opacity .65s cubic-bezier(.22,1,.36,1) .4s" }}>
-                    <span style={{ fontSize:14, color:"rgba(200,212,0,0.4)", flexShrink:0, marginTop:1 }}>◈</span>
-                    <p style={{ fontSize:12, color:"#4a4b42", fontFamily:"var(--mono)", margin:0, lineHeight:1.6 }}>
-                        <span style={{ color:"rgba(200,212,0,0.5)" }}>// TODO:</span> Заменить ссылки на реферальные — EXANTE, Just2Trade, UTEX. Найти href в массиве BROKERS в начале файла Brokers.jsx.
-                    </p>
                 </div>
             </div>
 

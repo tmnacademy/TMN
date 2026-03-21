@@ -216,7 +216,7 @@ export default function Research(){
                 {/* Header */}
                 <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:16,flexWrap:"wrap",marginBottom:0}}>
                     <div>
-                        <div data-fade="tag" style={f("tag")}><span style={{fontSize:11,fontWeight:500,color:"#C8D400",letterSpacing:".16em",textTransform:"uppercase",fontFamily:"var(--mono)"}}>◈ Исследования</span></div>
+                        <div data-fade="tag" style={f("tag")}><span style={{fontSize:11,fontWeight:500,color:"#C8D400",letterSpacing:".16em",textTransform:"uppercase",fontFamily:"var(--mono)"}}>◈ Исследовательские отчеты</span></div>
                         <h2 data-fade="h2" style={{...f("h2",.06),fontSize:"clamp(26px,5vw,44px)",fontWeight:600,lineHeight:1.12,letterSpacing:"-.02em",margin:"14px 0 0"}}>
                             Последние<br/><em style={{fontStyle:"normal",color:"#C8D400"}}>публикации</em>
                         </h2>
@@ -246,7 +246,7 @@ export default function Research(){
                 </div>
 
                 <p data-fade="lead" style={{...f("lead",.1),fontSize:"clamp(13px,1.8vw,16px)",color:"#9a9b8e",lineHeight:1.75,maxWidth:520,fontWeight:300,margin:"16px 0 clamp(28px,4vw,44px)"}}>
-                    Актуальные исследования напрямую из архива TheMyNotes — обновляется автоматически.
+                    Исследовательские отчеты из архива TheMyNotes
                 </p>
 
                 {/* Cards */}
@@ -272,7 +272,6 @@ export default function Research(){
                     <div style={{flex:1,minWidth:200}}>
                         <div style={{fontSize:11,fontWeight:500,color:"#C8D400",letterSpacing:".14em",textTransform:"uppercase",fontFamily:"var(--mono)",marginBottom:8}}>Полный архив → themynotes.com</div>
                         <div style={{fontSize:"clamp(16px,2.2vw,20px)",fontWeight:600,color:"#f2f2ec",lineHeight:1.25,letterSpacing:"-.01em",marginBottom:6}}>{posts.length>0?`${posts.length}+ актуальных исследований`:"Архив исследований TheMyNotes"}</div>
-                        <div style={{fontSize:13,color:"#9a9b8e",fontWeight:300}}>Все отчёты, макроанализ и еженедельные обзоры рынка.</div>
                     </div>
                     <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"11px 22px",background:mainHov?"#d4e000":"#C8D400",color:"#0e0f0a",fontFamily:"var(--ff)",fontSize:13,fontWeight:600,borderRadius:4,whiteSpace:"nowrap",flexShrink:0,transform:mainHov?"translateX(3px)":"none",transition:"all .2s ease"}}>
                         Открыть архив <IconExt/>

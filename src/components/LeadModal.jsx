@@ -1,17 +1,23 @@
 import { useEffect, useState, useRef } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../auth/firebase.config.js";
+
+// Self-contained — reads Firebase directly, no context/provider needed
+function useAuthLocal() {
+    const [user, setUser] = useState(auth.currentUser);
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, u => setUser(u));
+        return unsub;
+    }, []);
+    return user;
+}
 
 const IconClose = () => <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2 2l11 11M13 2L2 13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>;
 const IconMail  = () => <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1" y="2.5" width="13" height="10" rx="2" stroke="currentColor" strokeWidth="1.3"/><path d="M1 5l7 4.5L15 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>;
 const IconArrow = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
-const PERKS = [
-    "Еженедельный разбор компаний NYSE и NASDAQ",
-    "Инвестиционные идеи на основе данных, а не чутья",
-    "Ранний доступ к исследованиям по стоимостному инвестированию",
-    "Уведомления о старте новых модулей обучения",
-];
-
 export default function LeadModal() {
+    const user     = useAuthLocal();   // ← reads Firebase directly
     const [open,       setOpen]      = useState(false);
     const [email,      setEmail]     = useState("");
     const [name,       setName]      = useState("");
@@ -24,12 +30,14 @@ export default function LeadModal() {
     const timerRef = useRef(null);
 
     useEffect(() => {
+        // ← if logged in, never show modal
+        if (user) { clearTimeout(timerRef.current); return; }
         if (sessionStorage.getItem("modal_dismissed")) return;
         timerRef.current = setTimeout(() => {
             if (!hasShown.current) { hasShown.current = true; setOpen(true); }
         }, 25000);
         return () => clearTimeout(timerRef.current);
-    }, []);
+    }, [user]); // re-runs if user logs in
 
     const dismiss = () => {
         setOpen(false);
@@ -41,10 +49,8 @@ export default function LeadModal() {
         if (!email.includes("@")) { setErr("Введите корректный email"); return; }
         setErr("");
         setSent(true);
-        // TODO: connect to email service
     };
 
-    // Close on Escape
     useEffect(() => {
         if (!open) return;
         const onKey = e => { if (e.key === "Escape") dismiss(); };
@@ -52,7 +58,8 @@ export default function LeadModal() {
         return () => window.removeEventListener("keydown", onKey);
     }, [open]);
 
-    if (!open) return null;
+    // Don't render anything if user is logged in or modal is closed
+    if (user || !open) return null;
 
     const inputStyle = active => ({
         width:"100%", padding:"11px 14px", background:"rgba(200,212,0,0.03)",
@@ -63,10 +70,8 @@ export default function LeadModal() {
 
     return (
         <>
-            {/* Backdrop */}
             <div onClick={dismiss} style={{ position:"fixed", inset:0, zIndex:900, background:"rgba(0,0,0,0.75)", backdropFilter:"blur(8px)", WebkitBackdropFilter:"blur(8px)", animation:"bdIn 0.25s ease" }}/>
 
-            {/* Modal */}
             <div className="lead-modal-grid lead-modal-outer" style={{
                 position:"fixed", zIndex:901,
                 top:"50%", left:"50%",
@@ -79,24 +84,12 @@ export default function LeadModal() {
                 display:"grid",
                 gridTemplateColumns:"1fr 1fr",
             }}>
-
-                {/* ── LEFT PANEL ── */}
-                <div className="lead-modal-brand" style={{
-                    background:"#0e0f0a",
-                    border:"1px solid rgba(200,212,0,0.15)",
-                    borderRight:"none",
-                    borderRadius:"10px 0 0 10px",
-                    padding:"clamp(28px,4vw,44px)",
-                    display:"flex", flexDirection:"column", justifyContent:"space-between",
-                    position:"relative", overflow:"hidden",
-                }}>
-                    {/* Grid bg */}
+                {/* LEFT PANEL */}
+                <div className="lead-modal-brand" style={{ background:"#0e0f0a", border:"1px solid rgba(200,212,0,0.15)", borderRight:"none", borderRadius:"10px 0 0 10px", padding:"clamp(28px,4vw,44px)", display:"flex", flexDirection:"column", justifyContent:"space-between", position:"relative", overflow:"hidden" }}>
                     <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(200,212,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,212,0,0.03) 1px,transparent 1px)", backgroundSize:"28px 28px", pointerEvents:"none" }}/>
-                    {/* Glow */}
                     <div style={{ position:"absolute", top:-60, left:-60, width:200, height:200, background:"radial-gradient(circle,rgba(200,212,0,0.1),transparent 65%)", pointerEvents:"none" }}/>
 
                     <div className="lead-modal-brand-main" style={{ position:"relative", zIndex:1 }}>
-                        {/* Logo */}
                         <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:28 }}>
                             <div style={{ width:34, height:34, border:"1.5px solid #C8D400", borderRadius:7, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:10, fontWeight:600, color:"#C8D400", background:"rgba(200,212,0,0.05)", flexShrink:0 }}>TMN</div>
                             <div style={{ display:"flex", flexDirection:"column", lineHeight:1.1 }}>
@@ -112,21 +105,8 @@ export default function LeadModal() {
                         <p style={{ fontSize:13, color:"#9a9b8e", lineHeight:1.7, fontWeight:300, marginBottom:24 }}>
                             17 лет опыта. Стоимостное инвестирование на мировых рынках.
                         </p>
-
-                        {/* Perks */}
-                        <div className="lead-modal-perks" style={{ display:"flex", flexDirection:"column", gap:11 }}>
-                            {PERKS.map((b, i) => (
-                                <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:10, animation:`perkIn 0.45s cubic-bezier(0.22,1,0.36,1) ${0.08+i*0.07}s both` }}>
-                                    <div style={{ width:16, height:16, borderRadius:3, background:"rgba(200,212,0,0.1)", border:"1px solid rgba(200,212,0,0.22)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:1 }}>
-                                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="#C8D400" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                                    </div>
-                                    <span style={{ fontSize:13, color:"#9a9b8e", lineHeight:1.5, fontWeight:300 }}>{b}</span>
-                                </div>
-                            ))}
-                        </div>
                     </div>
 
-                    {/* Bottom */}
                     <div className="lead-modal-brand-bottom" style={{ display:"flex", gap:10, marginTop:28, position:"relative", zIndex:1 }}>
                         {["₿","Ξ","◈","◆"].map((g,i)=>(
                             <span key={i} style={{ fontFamily:"monospace", fontSize:11, fontWeight:700, color:"rgba(200,212,0,0.25)", animation:`gPulse ${1.8+i*0.4}s ease-in-out infinite alternate`, animationDelay:`${i*0.2}s` }}>{g}</span>
@@ -134,16 +114,8 @@ export default function LeadModal() {
                     </div>
                 </div>
 
-                {/* ── RIGHT PANEL ── */}
-                <div className="lead-modal-form" style={{
-                    background:"#1a1c14",
-                    border:"1px solid rgba(200,212,0,0.15)",
-                    borderRadius:"0 10px 10px 0",
-                    padding:"clamp(24px,4vw,44px)",
-                    position:"relative",
-                    display:"flex", flexDirection:"column",
-                }}>
-                    {/* Close */}
+                {/* RIGHT PANEL */}
+                <div className="lead-modal-form" style={{ background:"#1a1c14", border:"1px solid rgba(200,212,0,0.15)", borderRadius:"0 10px 10px 0", padding:"clamp(24px,4vw,44px)", position:"relative", display:"flex", flexDirection:"column" }}>
                     <button onClick={dismiss} aria-label="Закрыть"
                             style={{ position:"absolute", top:14, right:14, width:30, height:30, borderRadius:6, background:"rgba(255,255,255,0.04)", border:"1px solid rgba(200,212,0,0.1)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"#6b6c60", transition:"all 0.18s" }}
                             onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(200,212,0,0.3)";e.currentTarget.style.color="#C8D400";}}
@@ -161,7 +133,6 @@ export default function LeadModal() {
                                 <p style={{ fontSize:12, color:"#6b6c60", lineHeight:1.6 }}>Введите email — первый выпуск придёт сразу после подтверждения.</p>
                             </div>
 
-                            {/* Name */}
                             <div>
                                 <label style={{ display:"block", fontSize:10, color:"#6b6c60", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:6 }}>Ваше имя</label>
                                 <input type="text" value={name} onChange={e=>setName(e.target.value)} placeholder="Александр"
@@ -169,7 +140,6 @@ export default function LeadModal() {
                                        style={inputStyle(nameFocus)}/>
                             </div>
 
-                            {/* Email */}
                             <div>
                                 <label style={{ display:"block", fontSize:10, color:"#6b6c60", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:6 }}>Email <span style={{ color:"#C8D400" }}>*</span></label>
                                 <div style={{ position:"relative" }}>
@@ -177,13 +147,13 @@ export default function LeadModal() {
                                     <input type="email" value={email} onChange={e=>{setEmail(e.target.value);setErr("");}} required
                                            placeholder="you@example.com"
                                            onFocus={()=>setEmailFocus(true)} onBlur={()=>setEmailFocus(false)}
-                                           style={{ ...inputStyle(emailFocus || !!err), paddingLeft:36, borderColor:err?"rgba(255,80,80,0.5)":undefined }}/>
+                                           style={{ ...inputStyle(emailFocus||!!err), paddingLeft:36 }}/>
                                 </div>
                                 {err && <p style={{ fontSize:11, color:"#ff6060", marginTop:4, fontFamily:"monospace" }}>{err}</p>}
                             </div>
 
                             <p style={{ fontSize:10, color:"#3a3b34", lineHeight:1.6, fontFamily:"monospace" }}>
-                                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности. Отписаться можно в любое время.
+                                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
                             </p>
 
                             <button type="submit" onMouseEnter={()=>setBtnHov(true)} onMouseLeave={()=>setBtnHov(false)}
@@ -221,66 +191,22 @@ export default function LeadModal() {
         .lead-modal-grid::-webkit-scrollbar { display:none; }
         input::placeholder { color:#3a3b34; }
         input { -webkit-appearance:none; }
-
-        /* Tablet — single column */
         @media(max-width:580px){
-          .lead-modal-grid {
-            grid-template-columns:1fr !important;
-          }
-          .lead-modal-grid > div:first-child {
-            border-radius:10px 10px 0 0 !important;
-            border-right:1px solid rgba(200,212,0,0.15) !important;
-            border-bottom:none !important;
-          }
-          .lead-modal-grid > div:last-child {
-            border-radius:0 0 10px 10px !important;
-          }
+          .lead-modal-grid { grid-template-columns:1fr !important; }
+          .lead-modal-grid > div:first-child { border-radius:10px 10px 0 0 !important; border-right:1px solid rgba(200,212,0,0.15) !important; border-bottom:none !important; }
+          .lead-modal-grid > div:last-child  { border-radius:0 0 10px 10px !important; }
         }
-
-        /* Mobile — full-screen bottom sheet */
         @media(max-width:480px){
-          /* Override the centered positioning to a bottom sheet */
-          .lead-modal-outer{
-            top:auto!important;
-            bottom:0!important;
-            left:0!important;
-            right:0!important;
-            transform:none!important;
-            width:100%!important;
-            max-height:92dvh!important;
-            border-radius:16px 16px 0 0!important;
-            animation:sheetUp 0.3s cubic-bezier(0.22,1,0.36,1)!important;
-          }
-          /* Left brand panel becomes a compact strip on mobile */
-          .lead-modal-brand{
-            padding:16px 20px!important;
-            flex-direction:row!important;
-            align-items:center!important;
-            gap:14px!important;
-            border-radius:16px 16px 0 0!important;
-            border-right:none!important;
-            border-bottom:1px solid rgba(200,212,0,0.1)!important;
-          }
-          .lead-modal-brand-main{flex:1!important}
-          .lead-modal-brand h3{font-size:16px!important;margin-bottom:2px!important}
-          .lead-modal-brand p{display:none!important}
-          .lead-modal-perks{display:none!important}
-          .lead-modal-brand-bottom{display:none!important}
-          .lead-modal-form{
-            padding:20px!important;
-            border-radius:0!important;
-          }
-          /* Pull handle */
-          .lead-modal-outer::before{
-            content:'';
-            display:block;
-            width:36px; height:4px;
-            background:rgba(200,212,0,0.25);
-            border-radius:2px;
-            margin:10px auto -4px;
-          }
+          .lead-modal-outer { top:auto!important; bottom:0!important; left:0!important; right:0!important; transform:none!important; width:100%!important; max-height:92dvh!important; border-radius:16px 16px 0 0!important; animation:sheetUp 0.3s cubic-bezier(0.22,1,0.36,1)!important; }
+          .lead-modal-brand { padding:16px 20px!important; flex-direction:row!important; align-items:center!important; gap:14px!important; border-radius:16px 16px 0 0!important; border-right:none!important; border-bottom:1px solid rgba(200,212,0,0.1)!important; }
+          .lead-modal-brand-main { flex:1!important }
+          .lead-modal-brand h3 { font-size:16px!important; margin-bottom:2px!important }
+          .lead-modal-brand p  { display:none!important }
+          .lead-modal-perks    { display:none!important }
+          .lead-modal-brand-bottom { display:none!important }
+          .lead-modal-form { padding:20px!important; border-radius:0!important; }
         }
-        @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+        @keyframes sheetUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
       `}</style>
         </>
     );

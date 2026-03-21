@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, Fragment } from "react";
+import {IconAnalysis1} from "./NeonIcons.jsx";
 
 const IconArrow  = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M8 3L12 7 8 11" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 const IconSearch = () => <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="5.5" cy="5.5" r="3.5" stroke="currentColor" strokeWidth="1.3"/><line x1="8.5" y1="8.5" x2="12" y2="12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>;
@@ -75,7 +76,7 @@ function BitcoinOrb() {
             </div>
             <div style={{ position:"absolute", inset:"18%", borderRadius:"50%", background:"radial-gradient(circle,rgba(200,212,0,0.07) 0%,transparent 65%)", animation:"haloBreath 3.5s ease-in-out infinite" }}/>
             <div style={{ position:"absolute", inset:"26%", borderRadius:"50%", background:"linear-gradient(145deg,#1a1c14,#0e0f0a)", border:"1.5px solid rgba(200,212,0,0.3)", display:"flex", alignItems:"center", justifyContent:"center", animation:"corePulse 4s ease-in-out infinite" }}>
-                <span style={{ fontSize:"clamp(28px,5vw,52px)", color:"#C8D400", fontWeight:700, fontFamily:"var(--mono)", lineHeight:1, textShadow:"0 0 10px rgba(200,212,0,0.35)", transform:"rotate(-15deg)" }}>₿</span>
+                <span style={{ fontSize:"clamp(28px,5vw,52px)", color:"#C8D400", fontWeight:700, fontFamily:"var(--mono)", lineHeight:1, textShadow:"0 0 10px rgba(200,212,0,0.35)" }}><IconAnalysis1 /></span>
             </div>
             <div style={{ position:"absolute", inset:0, borderRadius:"50%", animation:"orbSpin 7s linear infinite" }}>
                 <div style={{ position:"absolute", top:"3.5%", left:"50%", transform:"translateX(-50%)", width:7, height:7, borderRadius:"50%", background:"#C8D400", boxShadow:"0 0 10px 3px rgba(200,212,0,0.8)" }}/>
@@ -163,7 +164,7 @@ export default function Hero() {
 
                     {/* Stats */}
                     <div className="hero-stats" style={{ ...rev(phase>=5) }}>
-                        {[{n:"17",s:"",l:"Лет опыта"},{n:"200",s:"+",l:"Исследований"},{n:"5",s:"K+",l:"Подписчиков"}].map((st,i)=>(
+                        {[{n:"17",s:"",l:"Лет опыта"},{n:"200",s:"+",l:"Исследований"},{n:"15",s:"K+",l:"Подписчиков"}].map((st,i)=>(
                             <Fragment key={st.l}>
                                 {i>0&&<div className="stat-div" style={{ width:1, height:28, background:"rgba(200,212,0,.15)" }}/>}
                                 <div style={{ display:"flex", flexDirection:"column", animation:`cUp .6s cubic-bezier(.22,1,.36,1) ${i*.1+.9}s both` }}>

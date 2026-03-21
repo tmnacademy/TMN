@@ -382,7 +382,7 @@ export default function Pricing() {
                     <span style={{ fontSize:10, fontWeight:500, color:"#C8D400", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)" }}>₿ Тарифы и оплата</span>
                 </div>
                 <h2 data-fade="h2" style={{ ...f("h2",.06), fontSize:"clamp(22px,5vw,44px)", fontWeight:600, lineHeight:1.12, letterSpacing:"-.02em", margin:"12px 0 clamp(10px,2vw,14px)" }}>
-                    Выберите<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>свой формат</em>
+                    Формат<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>работы</em>
                 </h2>
                 <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(12px,1.8vw,15px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:520, fontWeight:300, marginBottom:"clamp(20px,4vw,40px)" }}>
                     Выберите тариф, который соответствует вашему уровню и целям. Оплата картой или переводом.
