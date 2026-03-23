@@ -36,7 +36,6 @@ export default function Footer() {
                                 <div style={{ width:30, height:30, border:"1.5px solid #C8D400", borderRadius:5, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"var(--mono)", fontSize:9, fontWeight:600, color:"#C8D400", background:"rgba(200,212,0,0.05)" }}>TMN</div>
                                 <div style={{ display:"flex", flexDirection:"column", lineHeight:1.1 }}>
                                     <span style={{ fontSize:14, fontWeight:600, color:"#f2f2ec", letterSpacing:"0.04em" }}>Academy</span>
-                                    <span style={{ fontSize:8, color:"#6b6c60", letterSpacing:"0.2em", textTransform:"uppercase" }}>Исследовательские отчеты</span>
                                 </div>
                             </a>
                             <p style={{ fontSize:"clamp(11px,1.5vw,13px)", color:"#4a4b42", maxWidth:240, lineHeight:1.55 }}>
@@ -49,9 +48,9 @@ export default function Footer() {
                             <div>
                                 <div style={{ fontSize:9, fontWeight:500, color:"#6b6c60", letterSpacing:"0.16em", textTransform:"uppercase", fontFamily:"var(--mono)", marginBottom:12 }}>Платформа</div>
                                 <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-                                    <FooterLink onClick={() => scrollTo("program")}>Research</FooterLink>
-                                    <FooterLink onClick={() => scrollTo("pricing")}>Программа</FooterLink>
-                                    <FooterLink onClick={() => scrollTo("about")}>Тарифы</FooterLink>
+                                    <FooterLink onClick={() => scrollTo("research")}>Исследовательские отчеты</FooterLink>
+                                    <FooterLink onClick={() => scrollTo("program")}>Программа</FooterLink>
+                                    <FooterLink onClick={() => scrollTo("pricing")}>Тарифы</FooterLink>
                                 </div>
                             </div>
                             <div>
@@ -67,7 +66,7 @@ export default function Footer() {
 
                     {/* Bottom */}
                     <div style={{ borderTop:"1px solid rgba(200,212,0,0.07)", paddingTop:18, display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:10 }}>
-                        <p style={{ fontSize:11, color:"#4a4b42", fontFamily:"var(--mono)" }}>© {new Date().getFullYear()} TMN Academy. Инвестируйте с умом.</p>
+                        <p style={{ fontSize:11, color:"#4a4b42", fontFamily:"var(--mono)" }}>© {new Date().getFullYear()} TMN Academy · Все права защищены</p>
                         <div style={{ display:"flex", alignItems:"center", gap:16 }}>
                             <button onClick={() => setLegal("disclaimer")} style={{ background:"none", border:"none", cursor:"pointer", fontSize:11, color:"#4a4b42", fontFamily:"var(--mono)", padding:0, transition:"color .18s" }}
                                     onMouseEnter={e=>e.currentTarget.style.color="#C8D400"}

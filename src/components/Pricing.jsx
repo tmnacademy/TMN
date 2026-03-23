@@ -58,19 +58,16 @@ const PLAN_ICONS = [IconCoin, IconChartUp, IconCrown];
 
 const CRYPTOS = ["BTC","ETH","USDT","USDC","BNB","SOL","TON","MATIC"];
 const PLANS = [
-    { tier:"Модуль 1", name:"Базовый старт", price:"50–100", type:"basic", features:[
+    { tier:"Модуль 1", name:"Базовый старт", price:"50", type:"basic", features:[
             {t:"2 занятия в месяц по 1.5–2 часа",     ok:true },
             {t:"Основы стоимостного инвестирования",  ok:true },
             {t:"Разбор финансовых отчётов компаний",  ok:true },
-            {t:"Мастер-группа по субботам",           ok:false},
-            {t:"Личное сопровождение",                ok:false},
         ]},
-    { tier:"Модуль 2", name:"Инвестор-практик", price:"200–300", type:"pro", features:[
+    { tier:"Модуль 2", name:"Инвестор-практик", price:"300", type:"pro", features:[
             {t:"3–5 занятий в квартал по 1.5–2 часа", ok:true },
             {t:"Мастер-группа по субботам на 1 год",  ok:true },
             {t:"Разбор компаний NYSE / NASDAQ",        ok:true },
-            {t:"Поддержка и сопровождение +$100–200", ok:true },
-            {t:"Личное сопровождение",                ok:false},
+            {t:"Поддержка и сопровождение в мастер-группе", ok:true },
         ]},
     { tier:"Модуль 3", name:"Личное наставничество", price:"1500–2500", type:"premium", features:[
             {t:"Личное сопровождение 1–2 квартала",   ok:true },
@@ -385,7 +382,8 @@ export default function Pricing() {
                     Формат<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>работы</em>
                 </h2>
                 <p data-fade="lead" style={{ ...f("lead",.1), fontSize:"clamp(12px,1.8vw,15px)", color:"#9a9b8e", lineHeight:1.75, maxWidth:520, fontWeight:300, marginBottom:"clamp(20px,4vw,40px)" }}>
-                    Выберите формат обучения, который соответствует вашему уровню и целям. Принимаем оплату в криптовалюте.
+                    Выберите формат обучения, который соответствует вашим целям.
+                    Принимаем оплату в криптовалюте.
                 </p>
 
                 {/* Cards — pro card is larger via CSS align-items stretch + padding */}

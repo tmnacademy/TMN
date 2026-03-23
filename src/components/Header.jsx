@@ -9,7 +9,7 @@ const IconBook  = () => <svg width="13" height="13" viewBox="0 0 13 13" fill="no
 const IconTag   = () => <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 1.5h4.5l5 5-4.5 4.5-5-5V1.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/><circle cx="4" cy="4" r="0.9" fill="currentColor"/></svg>;
 const IconArrow = () => <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7.5 3L11 6.5 7.5 10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
-const NAV    = [{ id:"research", label:"Research", icon:<IconChart/> }, { id:"program", label:"Программа", icon:<IconBook/> }, { id:"pricing", label:"Тарифы", icon:<IconTag/> }];
+const NAV    = [{ id:"research", label:"Исследовательские отчеты", icon:<IconChart/> }, { id:"program", label:"Программа", icon:<IconBook/> }, { id:"pricing", label:"Тарифы", icon:<IconTag/> }];
 const GLYPHS = ["₿","◈","Ξ","◆","₿","◈","Ξ","◆"];
 
 export default function Header() {

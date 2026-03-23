@@ -147,11 +147,8 @@ export default function Brokers() {
 
                 <div className="brokers-hdr" style={{ display:"flex", alignItems:"flex-end", justifyContent:"space-between", gap:24, flexWrap:"wrap", margin:"14px 0 clamp(28px,4vw,48px)" }}>
                     <h2 style={{ fontSize:"clamp(26px,5vw,44px)", fontWeight:600, lineHeight:1.1, letterSpacing:"-0.02em", margin:0, opacity:vis?1:0, transform:vis?"none":"translateY(18px)", transition:"opacity .65s cubic-bezier(.22,1,.36,1) .06s, transform .65s cubic-bezier(.22,1,.36,1) .06s" }}>
-                        Наши<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>партнёры-брокеры</em>
+                        Наши<br/><em style={{ fontStyle:"normal", color:"#C8D400" }}>партнёры</em>
                     </h2>
-                    <p style={{ fontSize:"clamp(12px,1.6vw,14px)", color:"#6b6c60", lineHeight:1.7, maxWidth:380, fontWeight:300, margin:0, opacity:vis?1:0, transform:vis?"none":"translateY(18px)", transition:"opacity .65s cubic-bezier(.22,1,.36,1) .12s, transform .65s cubic-bezier(.22,1,.36,1) .12s" }}>
-                        Для работы на мировых рынках мы рекомендуем проверенных брокеров с прямым доступом к NYSE и NASDAQ.
-                    </p>
                 </div>
 
                 {/* Cards */}

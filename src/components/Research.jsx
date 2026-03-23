@@ -271,7 +271,7 @@ export default function Research(){
                     <div style={{position:"absolute",right:-40,top:-40,width:200,height:200,background:"radial-gradient(circle,rgba(200,212,0,.07) 0%,transparent 70%)",pointerEvents:"none"}}/>
                     <div style={{flex:1,minWidth:200}}>
                         <div style={{fontSize:11,fontWeight:500,color:"#C8D400",letterSpacing:".14em",textTransform:"uppercase",fontFamily:"var(--mono)",marginBottom:8}}>Полный архив → themynotes.com</div>
-                        <div style={{fontSize:"clamp(16px,2.2vw,20px)",fontWeight:600,color:"#f2f2ec",lineHeight:1.25,letterSpacing:"-.01em",marginBottom:6}}>{posts.length>0?`${posts.length}+ актуальных исследований`:"Архив исследований TheMyNotes"}</div>
+                        <div style={{fontSize:"clamp(16px,2.2vw,20px)",fontWeight:600,color:"#f2f2ec",lineHeight:1.25,letterSpacing:"-.01em",marginBottom:6}}>{posts.length>0?`${posts.length}+ актуальных исследований`:" "}</div>
                     </div>
                     <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"11px 22px",background:mainHov?"#d4e000":"#C8D400",color:"#0e0f0a",fontFamily:"var(--ff)",fontSize:13,fontWeight:600,borderRadius:4,whiteSpace:"nowrap",flexShrink:0,transform:mainHov?"translateX(3px)":"none",transition:"all .2s ease"}}>
                         Открыть архив <IconExt/>

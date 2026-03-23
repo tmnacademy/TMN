@@ -112,7 +112,7 @@ export default function Register() {
                             {user ? <>Добро пожаловать<br/><span style={{ color:"#C8D400" }}>в кабинет</span></> : <>Получайте аналитику<br/><span style={{ color:"#C8D400" }}>раньше всех</span></>}
                         </h2>
                         <p style={{ fontSize:"clamp(11px,1.5vw,14px)", color:"#9a9b8e", lineHeight:1.7, fontWeight:300, marginBottom:"clamp(18px,2.5vw,28px)", opacity:inView?1:0, transform:inView?"none":"translateX(-16px)", transition:"opacity .65s .17s,transform .65s .17s" }}>
-                            {user ? "Вы уже вошли в систему. Перейдите в личный кабинет для оформления обучения." : "17 лет опыта. Стоимостное инвестирование на мировых рынках."}
+                            {user ? "Вы уже вошли в систему. Перейдите в личный кабинет для оформления обучения." : "Стоимостное инвестирование на мировых рынках."}
                         </p>
                     </div>
 

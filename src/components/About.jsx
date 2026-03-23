@@ -70,7 +70,7 @@ export default function About() {
 
                             {/* stats bar */}
                             <div style={{ display:"flex", borderTop:"1px solid rgba(200,212,0,0.1)", position:"relative", zIndex:2, background:"rgba(10,11,8,0.95)" }}>
-                                {[{v:"17",u:"лет опыта"},{v:"NYSE",u:"NASDAQ"},{v:"US",u:"рынки"}].map((s,i) => (
+                                {[{v:"17 лет",u:"Опыта на финансовых рынках"}].map((s,i) => (
                                     <div key={i} style={{ flex:1, padding:"14px 8px", textAlign:"center", borderLeft: i>0 ? "1px solid rgba(200,212,0,0.08)" : "none" }}>
                                         <div style={{ fontFamily:"var(--mono)", fontSize:13, fontWeight:600, color:"#C8D400" }}>{s.v}</div>
                                         <div style={{ fontSize:10, color:"#6b6c60", textTransform:"uppercase", letterSpacing:"0.06em" }}>{s.u}</div>
