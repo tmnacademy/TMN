@@ -83,8 +83,8 @@ function BitcoinOrb() {
             </div>
             {[
                     { val:"Value",        style:{ top:"8%",    right:"-8%" },  delay:"0s"   },
-                    { val:"Investing",      style:{ bottom:"10%", left:"-6%" },  delay:"0.5s" },
-                    { val:"Stocks",         style:{ top:"46%",   right:"-14%"},  delay:"1s"   },
+                    { val:"Stocks",      style:{ bottom:"10%", left:"-6%" },  delay:"0.5s" },
+                    { val:"Investing",         style:{ top:"46%",   right:"-14%"},  delay:"1s"   },
             ].map((tag,i)=>(
                 <div key={i} style={{ position:"absolute", ...tag.style, background:"rgba(14,15,10,0.9)", border:"1px solid rgba(200,212,0,0.18)", borderRadius:4, padding:"5px 8px", backdropFilter:"blur(6px)", animation:"tagFloat 3s ease-in-out infinite alternate", animationDelay:tag.delay, minWidth:72 }}>
                     <div style={{ fontSize:8, color:"#6b6c60", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:1 }}>{tag.label}</div>
