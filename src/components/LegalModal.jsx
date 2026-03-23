@@ -161,7 +161,7 @@ export default function LegalModal({ initialTab = "disclaimer", onClose }) {
                         <div style={{ display:"flex", alignItems:"center", gap:8 }}>
                             <div style={{ width:30, height:30, border:"1.5px solid #C8D400", borderRadius:6, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"var(--mono)", fontSize:9, fontWeight:600, color:"#C8D400", background:"rgba(200,212,0,0.05)" }}>TMN</div>
                             <div style={{ display:"flex", flexDirection:"column", lineHeight:1.1 }}>
-                                <span style={{ fontSize:14, fontWeight:600, color:"#f2f2ec", letterSpacing:"0.04em" }}>Academy</span>
+                                <span style={{ fontSize:14, fontWeight:600, color:"#f2f2ec", letterSpacing:"0.04em", marginBottom: "2px" }}>Academy</span>
                                 <span className="hdr-sub" style={{ fontSize:8, color:"#6b6c60", letterSpacing:"0.18em", textTransform:"uppercase" }}>ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ</span>
                             </div>
                         </div>

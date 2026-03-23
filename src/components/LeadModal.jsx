@@ -136,7 +136,7 @@ export default function LeadModal() {
                         </h3>
                         <p style={{ fontSize:13, color:"#9a9b8e", lineHeight:1.7, fontWeight:300 }}>
                             {mode === "register"
-                                ? "Cтоимостное инвестирование на финансовых рынках"
+                                ? "Cтоимостное инвестирование на финансовых рынках."
                                 : "Войдите, чтобы получить доступ к личному кабинету."
                             }
                         </p>
