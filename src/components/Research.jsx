@@ -5,7 +5,7 @@ const IconExt     = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="
 const IconRefresh = () => <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11 6.5A4.5 4.5 0 102 6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><path d="M11 3v3.5H7.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 const IconSignal  = () => <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="7" width="2" height="4" rx=".5" fill="currentColor" opacity=".4"/><rect x="5" y="4" width="2" height="7" rx=".5" fill="currentColor" opacity=".7"/><rect x="9" y="1" width="2" height="10" rx=".5" fill="currentColor"/></svg>;
 
-const TAGS = { bitcoin:"₿",btc:"₿",крипто:"₿",crypto:"₿", defi:"Ξ",дефи:"Ξ",eth:"Ξ",ethereum:"Ξ", анализ:"◈",analysis:"◈",фунда:"◈", ai:"◆",искусственный:"◆",интеллект:"◆",портфел:"◆",invest:"◆",инвест:"◆" };
+const TAGS = { bitcoin:"₿",btc:"₿",крипто:"₿",crypto:"₿", defi:"Ξ",дефи:"Ξ",eth:"Ξ",ethereum:"Ξ", анализ:"◈",analysis:"◈",фунда:"◈", ai:"◆",искусственный:"◆",интеллект:"◆",портфель:"◆",invest:"◆",инвест:"◆" };
 const COLORS = { "₿":"rgba(200,212,0,.9)", "Ξ":"rgba(100,200,255,.85)", "◈":"rgba(160,255,180,.8)", "◆":"rgba(255,180,80,.8)" };
 const LABELS = { "₿":"Крипто", "Ξ":"DeFi", "◈":"Анализ", "◆":"Инвестиции" };
 
