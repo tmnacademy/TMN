@@ -10,8 +10,8 @@ const IconTG     = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="n
 const IconStar   = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 4H13l-3.5 2.5L11 12 7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg>;
 
 const PLANS = [
-    { name:"Базовый старт",         tag:"Basic",        price:"$50-100"    },
-    { name:"Инвестор-практик",      tag:"Pro",          price:"$200-300"   },
+    { name:"Базовый старт",         tag:"Basic",        price:"$50"    },
+    { name:"Инвестор-практик",      tag:"Pro",          price:"$300"   },
     { name:"Личное наставничество", tag:"VIP",          price:"$1500-2500" },
 ];
 
@@ -19,8 +19,6 @@ const FEATURES = [
     "Основы стоимостного инвестирования",
     "Разбор финансовой отчётности компаний",
     "Квартальный интенсив (3–5 занятий)",
-    "Мастер-группа по субботам — 1 год",
-    "Доступ к архиву исследований TheMyNotes",
 ];
 
 export default function Cabinet() {
