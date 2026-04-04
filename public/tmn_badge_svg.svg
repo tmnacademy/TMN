@@ -1,0 +1,21 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="120" height="120" fill="#000"/>
+
+  <!-- Logo box -->
+  <rect x="45" y="45" width="30" height="30" rx="6"
+        fill="rgba(200,212,0,0.05)"
+        stroke="#C8D400"
+        stroke-width="1.5"/>
+
+  <!-- Text -->
+  <text x="60" y="63"
+        text-anchor="middle"
+        font-family="monospace"
+        font-size="10"
+        font-weight="600"
+        fill="#C8D400"
+        dominant-baseline="middle">
+    TMN
+  </text>
+</svg>
