@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from "../auth/firebase.config.js";
 
 // ─── local auth hook (no context needed) ──────────────────────────────────
@@ -83,7 +83,10 @@ export default function Register() {
         setErr(""); setLoading(true);
         try {
             if (mode === "register") {
-                await createUserWithEmailAndPassword(auth, email.trim(), password);
+                const cred = await createUserWithEmailAndPassword(auth, email.trim(), password);
+                if (name.trim()) {
+                    await updateProfile(cred.user, { displayName: name.trim() });
+                }
             } else {
                 await signInWithEmailAndPassword(auth, email.trim(), password);
             }
@@ -124,7 +127,7 @@ export default function Register() {
                             <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:20, textAlign:"center" }}>
                                 {/* Avatar */}
                                 <div style={{ width:72, height:72, borderRadius:"50%", background:"rgba(200,212,0,0.08)", border:"2px solid rgba(200,212,0,0.35)", display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:28, fontWeight:700, color:"#C8D400", position:"relative" }}>
-                                    {user.email?.[0]?.toUpperCase() ?? "?"}
+                                    {(user?.displayName?.[0] ?? user?.email?.[0] ?? "?").toUpperCase()}
                                     <span style={{ position:"absolute", bottom:2, right:2, width:14, height:14, borderRadius:"50%", background:"#C8D400", border:"3px solid #1a1c14", boxShadow:"0 0 8px rgba(200,212,0,0.8)" }}/>
                                 </div>
                                 {/* Email */}

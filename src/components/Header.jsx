@@ -177,7 +177,7 @@ function Avatar({ user, onCabinet, onLogout }) {
         return () => document.removeEventListener("mousedown", h);
     }, [open]);
 
-    const letter = (user?.email?.[0] ?? "?").toUpperCase();
+    const letter = (user?.displayName?.[0] ?? user?.email?.[0] ?? "?").toUpperCase();
     const email  = user?.email ?? "";
     const short  = email.length > 22 ? email.slice(0,20)+"…" : email;
 
@@ -201,6 +201,11 @@ function Avatar({ user, onCabinet, onLogout }) {
                 <div style={{ position:"fixed", top:64, right:16, width:220, background:"#0e0f0a", border:"1px solid rgba(200,212,0,0.25)", borderRadius:8, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.8)", zIndex:9999, animation:"dropIn .18s ease" }}>
                     <div style={{ padding:"12px 14px", borderBottom:"1px solid rgba(200,212,0,0.08)" }}>
                         <div style={{ fontSize:9, color:"rgba(200,212,0,0.5)", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:3 }}>Аккаунт</div>
+                        {user?.displayName && (
+                            <div style={{ fontSize:13, color:"#f2f2ec", fontWeight:600, marginBottom:2 }}>
+                                {user.displayName}
+                            </div>
+                        )}
                         <div style={{ fontSize:12, color:"#9a9b8e", fontFamily:"monospace", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{short}</div>
                     </div>
                     <button onClick={() => { setOpen(false); onCabinet(); }}

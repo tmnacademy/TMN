@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from "../auth/firebase.config.js";
 
 function useAuthLocal() {
@@ -74,7 +74,10 @@ export default function LeadModal() {
         setErr(""); setLoading(true);
         try {
             if (mode === "register") {
-                await createUserWithEmailAndPassword(auth, email.trim(), password);
+                const cred = await createUserWithEmailAndPassword(auth, email.trim(), password);
+                if (name.trim()) {
+                    await updateProfile(cred.user, { displayName: name.trim() });
+                }
             } else {
                 await signInWithEmailAndPassword(auth, email.trim(), password);
             }

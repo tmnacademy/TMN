@@ -105,7 +105,7 @@ export default function Cabinet() {
                     <h1 style={{ fontSize:"clamp(24px,4vw,40px)", fontWeight:600, lineHeight:1.1, letterSpacing:"-0.02em", margin:"10px 0 6px" }}>
                         Добро пожаловать,<br/>
                         <em style={{ fontStyle:"normal", color:"#C8D400" }}>
-                            {user?.email?.split("@")[0] ?? "инвестор"}
+                            {user?.displayName ?? user?.email?.split("@")[0] ?? "инвестор"}
                         </em>
                     </h1>
                     <p style={{ fontSize:"clamp(12px,1.6vw,14px)", color:"#6b6c60", fontWeight:300, margin:0 }}>
