@@ -9,16 +9,44 @@ const IconLogout = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="n
 const IconTG     = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.5 4L2.5 11.5l6.5 2 2 6 3-4 5 3.5L21.5 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M9 13.5l8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>;
 const IconStar   = () => <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 4H13l-3.5 2.5L11 12 7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg>;
 
+// ── Unified plan data (mirrors Pricing.jsx exactly) ───────────────────────
 const PLANS = [
-    { name:"Базовый старт",         tag:"Basic",        price:"$50"    },
-    { name:"Инвестор-практик",      tag:"Pro",          price:"$300"   },
-    { name:"Личное наставничество", tag:"VIP",          price:"$1500-2500" },
-];
-
-const FEATURES = [
-    "Основы стоимостного инвестирования",
-    "Разбор финансовой отчётности компаний",
-    "Квартальный интенсив (3–5 занятий)",
+    {
+        name: "Базовый старт",
+        tag:  "Basic",
+        tier: "Модуль 1",
+        price: "$50",
+        features: [
+            "2 занятия в месяц по 1.5–2 часа",
+            "Основы стоимостного инвестирования",
+            "Разбор финансовых отчётов компаний",
+        ],
+    },
+    {
+        name: "Инвестор-практик",
+        tag:  "Pro",
+        tier: "Модуль 2",
+        price: "$300",
+        features: [
+            "3–5 занятий в квартал по 1.5–2 часа",
+            "Мастер-группа по субботам на 1 год",
+            "Разбор компаний NYSE / NASDAQ",
+            "Поддержка и сопровождение в мастер-группе",
+        ],
+    },
+    {
+        name: "Личное наставничество",
+        tag:  "VIP",
+        tier: "Модуль 3",
+        price: "$1500–2500",
+        features: [
+            "Личное сопровождение 1–2 квартала",
+            "Ежедневный контакт до 30 минут",
+            "Задания по поиску и анализу компаний",
+            "Мастер-группа по субботам включена",
+            "Требуется прохождение Модуля 2",
+        ],
+    },
 ];
 
 export default function Cabinet() {
@@ -106,7 +134,7 @@ export default function Cabinet() {
                                             }}>
                                         {sel && <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:"linear-gradient(90deg,#C8D400,transparent)" }}/>}
                                         <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
-                                            <span style={{ fontSize:9, fontWeight:500, color: sel?"#C8D400":"#6b6c60", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace" }}>{plan.tag}</span>
+                                            <span style={{ fontSize:9, fontWeight:500, color: sel?"#C8D400":"#6b6c60", letterSpacing:"0.14em", textTransform:"uppercase", fontFamily:"monospace" }}>{plan.tier} · {plan.tag}</span>
                                             <span style={{ fontSize:"clamp(13px,1.8vw,15px)", fontWeight:600, color:"#f2f2ec" }}>{plan.name}</span>
                                         </div>
                                         <span style={{ fontSize:"clamp(14px,2vw,18px)", fontWeight:700, color: sel?"#C8D400":"#9a9b8e", fontFamily:"monospace", letterSpacing:"-0.02em" }}>{plan.price}</span>
@@ -115,11 +143,11 @@ export default function Cabinet() {
                             })}
                         </div>
 
-                        {/* Features list */}
+                        {/* Per-plan features list — updates when plan changes */}
                         <div style={{ marginTop:20, padding:"16px 18px", background:"#141510", border:"1px solid rgba(200,212,0,0.08)", borderRadius:6 }}>
                             <div style={{ fontSize:10, color:"#6b6c60", letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"monospace", marginBottom:12 }}>Что входит</div>
                             <div style={{ display:"flex", flexDirection:"column", gap:9 }}>
-                                {FEATURES.map((f, i) => (
+                                {selectedPlan.features.map((f, i) => (
                                     <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:9, fontSize:"clamp(11px,1.4vw,13px)", color:"#9a9b8e", fontWeight:300, lineHeight:1.5 }}>
                                         <span style={{ color:"#C8D400", flexShrink:0, marginTop:1 }}><IconStar/></span>
                                         {f}
