@@ -73,7 +73,7 @@ export default function Cabinet() {
                     <a href="/" style={{ display:"flex", alignItems:"center", gap:8, textDecoration:"none" }}>
                         <div style={{ width:28, height:28, border:"1.5px solid #C8D400", borderRadius:5, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"monospace", fontSize:8, fontWeight:600, color:"#C8D400", background:"rgba(200,212,0,0.05)" }}>TMN</div>
                         <div style={{ display:"flex", flexDirection:"column", lineHeight:1.1 }}>
-                            <span style={{ fontSize:13, fontWeight:600, color:"#f2f2ec", letterSpacing:"0.04em" }}>Academy</span>
+                            <span style={{ fontSize:13, fontWeight:600, color:"#f2f2ec", letterSpacing:"0.04em", marginBottom: '3px' }}>Academy</span>
                             <span style={{ fontSize:7, color:"#6b6c60", letterSpacing:"0.2em", textTransform:"uppercase" }}>Личный кабинет</span>
                         </div>
                     </a>
@@ -203,7 +203,7 @@ export default function Cabinet() {
                                 onClick={e => {
                                     e.preventDefault();
                                     const email = user?.email ?? "";
-                                    window.open(`https://t.me/ba_n_di_t_7_7_7?text=Hello! I want to buy a course. Plan: ${selectedPlan.tag} ${selectedPlan.price}. Email: ${email}`, "_blank");
+                                    window.open(`https://t.me/tmn_manager_nikita?text=Hello! I want to buy a course. Plan: ${selectedPlan.tag} ${selectedPlan.price}. Email: ${email}`, "_blank");
                                 }}
                                 target="_blank" rel="noopener noreferrer"
                                 onMouseEnter={() => setBtnHov(true)}
@@ -228,7 +228,7 @@ export default function Cabinet() {
                             </a>
 
                             <p style={{ fontSize:10, color:"#3a3b34", fontFamily:"monospace", textAlign:"center", marginTop:12 }}>
-                                Переход в Telegram · @ba_n_di_t_7_7_7
+                                Переход в Telegram · @tmn_manager_nikita
                             </p>
                         </div>
                     </div>

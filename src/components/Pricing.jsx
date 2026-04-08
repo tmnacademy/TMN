@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faCheck, faBitcoinSign, faFire, faGem, faHeadset } from "@fortawesome/free-solid-svg-icons";
+import {
+    faArrowRight,
+    faCheck,
+    faBitcoinSign,
+    faFire,
+    faGem,
+    faHeadset,
+    faCoins, faGraduationCap
+} from "@fortawesome/free-solid-svg-icons";
 import CryptoModal from "./PaymentModal.jsx";
 
 const TG_MANAGER = "https://t.me/ba_n_di_t_7_7_7?text=Hello!%20I%20would%20like%20to%20learn%20more%20about%20the%20training%20conditions%20and%20choose%20a%20suitable%20plan.";
@@ -16,7 +24,11 @@ const IconCoin = () => (
             const rad = Math.PI * deg / 180;
             return <line key={i} x1={32+24*Math.cos(rad)} y1={32+24*Math.sin(rad)} x2={32+20*Math.cos(rad)} y2={32+20*Math.sin(rad)} stroke="#C8D400" strokeWidth="1.5" strokeLinecap="round" opacity="0.45"/>;
         })}
-        <text x="32" y="32" textAnchor="middle" dominantBaseline="central" fontSize="18" fontWeight="700" fontFamily="monospace" fill="#C8D400" opacity="0.9">₿</text>
+        <foreignObject x="18" y="18" width="28" height="28">
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <FontAwesomeIcon icon={faCoins} color="#C8D400" size="lg" />
+            </div>
+        </foreignObject>
         <ellipse cx="24" cy="22" rx="6" ry="3" fill="white" opacity="0.07" transform="rotate(-30 24 22)"/>
     </svg>
 );
@@ -210,7 +222,7 @@ function PriceCard({ plan, index, Icon, onPay }) {
             }}/>
 
             {/* Watermark */}
-            <div style={{ position:"absolute", bottom:-16, right:-4, fontSize:110, fontWeight:700, color:hov?"rgba(200,212,0,0.07)":"transparent", fontFamily:"var(--mono)", lineHeight:1, pointerEvents:"none", userSelect:"none", transition:"color .4s ease" }}>₿</div>
+            <div style={{ position:"absolute", bottom:-16, right:-4, fontSize:110, fontWeight:700, color:hov?"rgba(200,212,0,0.07)":"transparent", fontFamily:"var(--mono)", lineHeight:1, pointerEvents:"none", userSelect:"none", transition:"color .4s ease" }}><FontAwesomeIcon icon={faGraduationCap} /></div>
 
             {/* PRO badge */}
             {isPro && (

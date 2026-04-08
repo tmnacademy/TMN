@@ -58,7 +58,7 @@ export default function Footer() {
                                 <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
                                     <FooterLink href="https://www.instagram.com/tmnacademy">Instagram</FooterLink>
                                     <FooterLink href="https://t.me/TMNAcademy">Telegram</FooterLink>
-                                    <FooterLink href="https://www.tiktok.com/@tmnacademy">Tik Tok</FooterLink>
+                                    <FooterLink href="https://www.tiktok.com/@tmn.academy">Tik Tok</FooterLink>
                                 </div>
                             </div>
                         </div>

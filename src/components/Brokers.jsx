@@ -116,10 +116,6 @@ function BrokerCard({ broker, index, vis }) {
                 </a>
             </div>
 
-            {/* Watermark number */}
-            <div style={{ position:"absolute", bottom:-8, right:8, fontSize:80, fontWeight:700, color:hov?"rgba(200,212,0,0.06)":"rgba(200,212,0,0.025)", fontFamily:"var(--mono)", lineHeight:1, pointerEvents:"none", userSelect:"none", transition:"color .35s" }}>
-                {String(index+1).padStart(2,"0")}
-            </div>
         </div>
     );
 }
