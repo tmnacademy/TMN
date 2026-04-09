@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import CryptoModal from "./PaymentModal.jsx";
 
-const TG_MANAGER = "https://t.me/ba_n_di_t_7_7_7?text=Hello!%20I%20would%20like%20to%20learn%20more%20about%20the%20training%20conditions%20and%20choose%20a%20suitable%20plan.";
+const TG_MANAGER = "https://t.me/tmn_manager_nikita?text=Hello!%20I%20would%20like%20to%20learn%20more%20about%20the%20training%20conditions%20and%20choose%20a%20suitable%20plan.";
 
 // ── Plan icons ─────────────────────────────────────────────────────────────
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const TG_LINK = "https://t.me/ba_n_di_t_7_7_7?text=Hello!%20I%20have%20completed%20the%20USDT%20payment%20and%20would%20like%20to%20send%20a%20confirmation%20screenshot.%20Please%20activate%20my%20access.";
+const TG_LINK = "https://t.me/tmn_manager_nikita?text=Hello!%20I%20have%20completed%20the%20USDT%20payment%20and%20would%20like%20to%20send%20a%20confirmation%20screenshot.%20Please%20activate%20my%20access.";
 const ADDRESS = "TL8uJzoCJSwrEJonw5g2UnroBDoiEmDuxY";
 const NETWORK = "TRC20 (TRON)";
 
